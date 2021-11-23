@@ -4,9 +4,9 @@ Sistema web Comunicacion-Sin-Fronteras/
 ## Iniciar Servidor (Backend)
 cd server
 Desarrollo:
-npm start-dev
+npm run start-dev
 Producción:
-npm start-dev
+npm start
 
 ## Iniciar Client (Backend)
 cd client
