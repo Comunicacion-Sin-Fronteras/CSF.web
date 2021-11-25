@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 mongoose
-    .connect('mongodb://127.0.0.1:27017/csf', { useNewUrlParser: true })
+    .connect('mongodb://superuser:admin@localhost:27017/ComunicacionSinFronteras?authSource=admin', { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message)
     })
