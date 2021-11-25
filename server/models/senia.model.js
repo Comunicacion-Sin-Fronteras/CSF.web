@@ -3,9 +3,12 @@ const Schema = mongoose.Schema
 
 const Senia = new Schema(
     {
-        nombre: { type: String, required: true },
+        palabra: { type: String, required: true },
         URLImagen: { type: String, required: true },
+        dificultad: {type: String, required: true},
+        administradorNombre:{type: String, required: true},
         descripcion: { type: String, required: true },
+        categoria: { type: String, required: true },
     },
     { timestamps: true },
 )
