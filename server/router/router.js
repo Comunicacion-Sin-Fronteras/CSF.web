@@ -15,5 +15,6 @@ router.post('/admin',AdminController.createNewAdmin)
 router.put('/admin',AdminController.updateDataAdmin)
 router.delete('/admin',AdminController.deleteAdmin)
 router.get('/admin', AdminController.getDataAdmin)
+router.get('/alladmins', AdminController.getAllAdmins)
 
 module.exports = router

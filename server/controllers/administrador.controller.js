@@ -100,6 +100,17 @@ updateDataAdmin = (req,res) => {
     })
 }
 
+getAllAdmins = async (req,res) => {
+    
+    const Admins = await Administrador.find({})
+    return res.status(200).json({
+        success: true,
+        data: Admins,
+        message: 'Consulta Exitosa',
+    })
+    
+}
+
 deleteAdmin = (req,res)=> {
     const body = req.body
 
@@ -132,4 +143,5 @@ module.exports = {
     updateDataAdmin,
     deleteAdmin,
     getDataAdmin,
+    getAllAdmins
 }
