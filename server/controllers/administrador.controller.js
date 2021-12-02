@@ -14,7 +14,7 @@ createNewAdmin = (req, res) => {
     Admin.Correo_Electronico = body.Correo_Electronico
     Admin.Fecha_de_Nacimiento = body.Fecha_de_Nacimiento
     Admin.Contraseña = body.Contraseña
-    Admin.NombreAdminRegistra = "David"//Como recuperamos el nombre de la sesion actual?
+    Admin.NombreAdminRegistra = body.AdminActual
 
     Admin.save()
         .then(result => {
