@@ -20,5 +20,6 @@ router.get('/alladmins', AdminController.getAllAdmins)
 
 router.post('/activities', ActivityController.addActivityToHistory)
 router.get('/activities', ActivityController.getActivityHistory)
+router.get('/activity', ActivityController.getHistoryContent)
 
 module.exports = router
