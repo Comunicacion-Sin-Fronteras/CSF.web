@@ -1,5 +1,16 @@
-{
-    "nombre": "Seña Google",
-    "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
-    "descripcion": "Seña Gogole example"
-}
+[{
+        "palabra": "Seña Google",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Seña Gogole example",
+        "dificultad": "hard",
+        "administradorNombre": "David",
+        "categoria": "David"
+    },
+    {
+        "Nombre_Administrador": "Juan Garcia",
+        "Correo_Electronico": "JuanGa68@gmail.com",
+        "Fecha_de_Nacimiento":"",
+        "Contraseña":"contraseña1234",
+        "NombreAdminRegistra":"David"
+    }
+]
