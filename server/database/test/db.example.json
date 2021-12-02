@@ -9,8 +9,16 @@
     {
         "Nombre_Administrador": "Juan Garcia",
         "Correo_Electronico": "JuanGa68@gmail.com",
-        "Fecha_de_Nacimiento":"",
+        "Fecha_de_Nacimiento":"03/25/2015",
         "Contraseña":"contraseña1234",
         "NombreAdminRegistra":"David"
+    },
+    {
+        "Fecha_de_Realizacion":"03/25/2015",
+        "Tipo_de_Actividad":"Memorama",
+        "Dificultad":"Fácil",
+        "Calificacion":"8",
+        "Nombre_Usuario":"David",
+        "Palabras": ["Hola","Como estas", "Buen dia"]
     }
 ]
