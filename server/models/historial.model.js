@@ -3,7 +3,6 @@ const Schema = mongoose.Schema
 
 const Historial = new Schema(
     {
-        ID_Actividad:{type: Number, required: true},
         Fecha_de_Realizacion: {type: Date, required: true},
         Tipo_de_Actividad: {type: String, required: true},
         Dificultad: { type:String, required: true},
