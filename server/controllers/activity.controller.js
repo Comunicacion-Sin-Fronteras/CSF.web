@@ -69,8 +69,23 @@ addActivityToHistory = (req, res) => {
         message: "Actividad guardada con Exito"
     })
 }
+getHistoryContent = async (req,res)=> {
+    const palabras = await Contenido.find({ID_Actividad: req.query.Activity, Nombre_Usuario: req.query.Nombre_Usuario})
+    if(!palabras){
+        return res.status(400).json({
+            success: false,
+            error: 'No hay nada para mostar'
+        })
+    }
+    return res.status(200).json({
+        success: true,
+        message: 'Conexion exitosa',
+        data: palabras
+    })
+}
 
 module.exports = {
     getActivityHistory,
-    addActivityToHistory
+    addActivityToHistory,
+    getHistoryContent
 }
