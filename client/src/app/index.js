@@ -1,6 +1,7 @@
 // import logo from './logo.svg';
 import './app.css';
 import AppRouting from './router';
+import 'bootstrap/dist/css/bootstrap.min.css'
 // require("dotenv").config()
 const BASE_URL = process.env.REACT_APP_SERVER_API_ENDPOINT;
 
