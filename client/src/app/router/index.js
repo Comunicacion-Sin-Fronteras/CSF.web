@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { SeniasList, SeniasInsert, SeniasUpdate } from '../pages/Senias'
@@ -14,18 +14,23 @@ function AppRouting() {
     const [userContext, setUserContext] = useContext(UserContext)
 
 function AppRouting() {
+    const [token, setToken] = useState();
+
+    if (!token) {
+        return <Login setToken={setToken} />
+    }
     return (
         <Router>
             <Routes>
-                <Route path="/senia/list" exact element={<SeniasList/>} />
-                <Route path="/senia/create" exact element={<SeniasInsert/>} />
+                <Route path="/senia/list" exact element={<SeniasList />} />
+                <Route path="/senia/create" exact element={<SeniasInsert />} />
                 <Route
                     path="/senia/update/:id"
                     exact
-                    element={<SeniasUpdate/>}
+                    element={<SeniasUpdate />}
                 />
                 <Route path="/" element={<div>Home</div>} />
-                <Route path="*" element={<NotFoundError/>} />
+                <Route path="*" element={<NotFoundError />} />
             </Routes>
         </Router>
     )
