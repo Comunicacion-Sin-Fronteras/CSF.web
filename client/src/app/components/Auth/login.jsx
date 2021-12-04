@@ -73,18 +73,17 @@ export default function Login() {
             <form onSubmit={formSubmitHandler} className="auth-form">
                 <FormGroup>
                     <Label for="email">
-                        Valid input
+                        Correo Electronico:
                     </Label>
-                    
                     <Input id="email"
                         placeholder="Email"
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         required
-                        valid />
+                        />
                     <FormFeedback valid>
-                        Sweet! that name is available
+                        Correo Valido
                     </FormFeedback>
                 </FormGroup>
                 <FormGroup>
@@ -97,9 +96,9 @@ export default function Login() {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         required
-                        valid />
+                        />
                     <FormFeedback valid>
-                        Sweet! that name is available
+                        Password Correcta
                     </FormFeedback>
                 </FormGroup>
                 <Button

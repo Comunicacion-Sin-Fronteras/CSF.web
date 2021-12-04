@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { SeniasList, SeniasInsert, SeniasUpdate } from '../pages/Senias'
 import { NotFoundError } from '../pages/Errors/'
-import Login from '../components/Auth/login';
 import Loader from '../components/Loader';
 // import 'bootstrap/dist/css/bootstrap.min.css'
 import { UserContext } from '../../context/UserContext';
+import UserLogin from '../pages/Users/UserLogin';
 
 function AppRouting() {
     const [token, setToken] = useState();
@@ -14,8 +14,9 @@ function AppRouting() {
     const [userContext, setUserContext] = useContext(UserContext)
 
     if (!token) {
-        return <Login setToken={setToken} />
-    }
+        // return <Login setToken={setToken} />
+        return <UserLogin></UserLogin>
+    } 
     return (
         <Router>
             <Routes>
