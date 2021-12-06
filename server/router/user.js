@@ -93,7 +93,7 @@ router.post("/refreshToken", (req, res, next) => {
 
 
     if (!refreshToken) {
-        console.log("getting refretoken from req.body")
+        // console.log("getting refretoken from req.body")
         refreshToken = req.body.refreshToken;
     }
 
@@ -103,13 +103,13 @@ router.post("/refreshToken", (req, res, next) => {
             // console.log("Verify tokens, refresh signd cooks: " + refreshToken)
             // to fix:
             const payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
-            console.log("Verified tokens")
+            // console.log("Verified tokens")
             const userId = payload._id
-            console.log("Searching User: id=" + userId)
+            // console.log("Searching User: id=" + userId)
             Usuario.findOne({ _id: userId }).then(
                 user => {
                     if (user) {
-                        console.log("Founded User")
+                        // console.log("Founded User")
 
                         // Find the refresh token against the user record in database
                         const tokenIndex = user.refreshToken.findIndex(
@@ -117,8 +117,7 @@ router.post("/refreshToken", (req, res, next) => {
                         )
 
                         if (tokenIndex === -1) {
-                            console.log("Unauthorized request: " +refreshToken)
-
+                            // console.warn("Unauthorized request!")
                             res.statusCode = 401
                             res.send("Unauthorized: " )
                         } else {
@@ -133,7 +132,7 @@ router.post("/refreshToken", (req, res, next) => {
 
                                     res.send(err)
                                 } else {
-                                    console.log("new refresh token")
+                                    // console.log("new refresh token")
                                     res.cookie("refreshToken", newRefreshToken, COOKIE_OPTIONS)
                                     res.send({ success: true, token, refreshToken: newRefreshToken })
                                 }

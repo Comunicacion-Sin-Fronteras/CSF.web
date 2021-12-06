@@ -9,7 +9,7 @@ const refreshToken = async () => {
     const refreshToken = cookies.get("REFRESHTOKEN");
 
     if(refreshToken){
-        console.log(`"trying to get new token" ${refreshToken}`)
+        // console.log(`"trying to get new token" ${refreshToken}`)
         axios.post(baseURL, { refreshToken }).then(function (response) {
             const data = response.data
             cookies.set("TOKEN", data.token, {
@@ -17,10 +17,10 @@ const refreshToken = async () => {
             });cookies.set("REFRESHTOKEN", data.refreshToken, {
                 path: "/",
             });
-            console.log("Token verificado y acutalizado. going to outlet, REFRESHTOKEN stted: ")
-            console.log(data.token)
+            // console.log("Token verificado y acutalizado. going to outlet, REFRESHTOKEN stted: ")
+            // console.log(data.token)
         }).catch(function (error) {
-            console.log("el token no a sido verificado y acutalizado: ")
+            // console.log("el token no a sido verificado y acutalizado: ")
             console.log(error);
         });
     }
