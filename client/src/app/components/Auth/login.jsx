@@ -1,23 +1,18 @@
 import { Button, FormGroup, Label, Input, FormFeedback } from "reactstrap"
-import React, { useState, useContext } from 'react';
-import { UserContext } from "../../../context/UserContext";
-import loginService from "./../Auth/services/index";
-
+import React, { useState } from 'react';
+import Cookies from "universal-cookie";
+import { useNavigate  } from "react-router-dom";
 
 export default function Login() {
+    const navigate = useNavigate()
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [userContext, setUserContext] = useContext(UserContext)
     const [error, setError] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
+    
     const formSubmitHandler = async event => {
         event.preventDefault()
-        // const user = loginService.login({ username: email, password })
-        // setUserContext(oldValues => {
-        //     return { ...oldValues, token: data.token, user: user }
-        // })
-
         setIsSubmitting(true)
         setError("")
 
@@ -27,45 +22,44 @@ export default function Login() {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username: email, password }),
-        })
-            .then(async response => {
-                setIsSubmitting(false)
-                if (!response.ok) {
-                    if (response.status === 400) {
-                        setError("Please fill all the fields correctly!")
-                        // console.log({ correo_Electronico: email, password })
-                    } else if (response.status === 401) {
-                        setError("Invalid email and password combination.")
-                    } else {
-                        setError(genericErrorMessage)
-                    }
+            body: JSON.stringify({ correo_Electronico: email, password }),
+        }).then(async response => {
+            setIsSubmitting(false)
+            if (!response.ok) {
+                if (response.status === 400) {
+                    setError("Please fill all the fields correctly!")
+                    // console.log({ correo_Electronico: email, password })
+                } else if (response.status === 401) {
+                    setError("Invalid email and password combination.")
                 } else {
-                    
-                    const data = await response.json()
-                    console.log("retrieved dataaaaaa:")
-                    console.log(data)
-                    window.localStorage.setItem(
-                        'loggedUser', JSON.stringify(data)
-                    )
-                    // localStorage.setItem('user', data.token)
-                    setUserContext(oldValues => {
-                        console.log(data.token)
-                        return { ...oldValues, token: data.token }
-                    })
-                    // console.log(UserContext.token)
+                    setError(genericErrorMessage)
                 }
-            })
-            .catch(error => {
-                setIsSubmitting(false)
-                setError(genericErrorMessage)
-            })
+            } else {
+                const data = await response.json()
+                const cookies = new Cookies();
+                cookies.set("TOKEN", data.token, {
+                    path: "/",
+                });
+                cookies.set("REFRESHTOKEN", data.refreshToken, {
+                    path: "/",
+                });
+                // this.props.history.push('/senia/list')
+                //  console.log("setting new token:" + data.token)
+                console.log("setting new token:" + cookies.get("TOKEN"))
+                console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
+                navigate("/senia/list");
+            }
+        }).catch(error => {
+            setIsSubmitting(false)
+            setError(genericErrorMessage)
+        })
+        
     }
 
     return (
         <div>
-            {error && < div class="container">
-                < div class="alert alert-info" role="alert">
+            {error && < div className="container">
+                < div className="alert alert-info" role="alert">
                     {error}
                 </div>
             </div>}
@@ -81,7 +75,7 @@ export default function Login() {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         required
-                        />
+                    />
                     <FormFeedback valid>
                         Correo Valido
                     </FormFeedback>
@@ -96,7 +90,7 @@ export default function Login() {
                         value={password}
                         onChange={e => setPassword(e.target.value)}
                         required
-                        />
+                    />
                     <FormFeedback valid>
                         Password Correcta
                     </FormFeedback>

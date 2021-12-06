@@ -10,14 +10,14 @@ class UserLogin extends Component {
             password: '',
             loginscreen: [],
             loginmessage: '',
-            buttonLabel: 'Register',
+            buttonLabel: 'Registro',
             isLogin: true
         }
     }
     componentWillMount() {
         var userLogin = [];
-        userLogin.push(<Login parentContext={this} appContext={this.props.parentContext} />);
-        var loginmessage = "Not registered yet, Register Now";
+        userLogin.push(<Login parentContext={this} key="loginmount" appContext={this.props.parentContext} />);
+        var loginmessage = "Crea tu cuenta";
         this.setState({
             userLogin: userLogin,
             loginmessage: loginmessage
@@ -39,7 +39,7 @@ class UserLogin extends Component {
         }
         else {
             var userLogin = [];
-            userLogin.push(<Login parentContext={this} />);
+            userLogin.push(<Login parentContext={this} key="login"  />);
             loginmessage = "Not Registered yet.Go to registration";
             this.setState({
                 userLogin: userLogin,

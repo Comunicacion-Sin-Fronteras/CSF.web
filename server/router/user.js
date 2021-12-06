@@ -1,4 +1,5 @@
 const { getToken, COOKIE_OPTIONS, getRefreshToken, verifyUser } = require("../auth/authenticate")
+const jwt = require("jsonwebtoken")
 
 const Usuario = require("../models/user")
 const passport = require("passport")
@@ -30,7 +31,15 @@ router.post("/signup", (req, res, next) => {
                     user.sexo = req.body.sexo || "sin definir"
                     user.correo_Electronico = req.body.correo_Electronico || ""
                     const token = getToken({ _id: user._id })
+
                     const refreshToken = getRefreshToken({ _id: user._id })
+                    const payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
+
+                    if (payload) {
+                        console.log("verify working")
+                    } else {
+                        console.log("verify not working")
+                    }
                     user.refreshToken.push({ refreshToken })
                     user.save((err, user) => {
                         if (err) {
@@ -38,9 +47,11 @@ router.post("/signup", (req, res, next) => {
                             res.send(err)
 
                         } else {
+                            console.log("refreshtoken: " + refreshToken)
                             res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
-                            res.send({ success: true, token })
-                            console.log(user)
+                            res.send({ success: true, token, refreshToken })
+                            console.log("token: " + token)
+                            // console.log(user)
                         }
                     })
                 }
@@ -50,9 +61,16 @@ router.post("/signup", (req, res, next) => {
 })
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
-    const token = getToken({ _id: req.user._id })
-    const refreshToken = getRefreshToken({ _id: req.user._id })
-    Usuario.findById(req.user._id).then(
+    const userID = req.user._id;
+    const token = getToken({ _id: userID })
+    const refreshToken = getRefreshToken({ _id: userID })
+    const payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
+    if (payload) {
+        console.log("verify working")
+    } else {
+        console.log("verify not working")
+    }
+    Usuario.findById(userID).then(
         user => {
             user.refreshToken.push({ refreshToken })
             user.save((err, user) => {
@@ -61,7 +79,7 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
                     res.send(err)
                 } else {
                     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
-                    res.send({ success: true, token })
+                    res.send({ success: true, token, refreshToken, userID })
                 }
             })
         },
@@ -71,28 +89,38 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
 
 router.post("/refreshToken", (req, res, next) => {
     const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
+    var { refreshToken } = signedCookies
+
+
+    if (!refreshToken) {
+        console.log("getting refretoken from req.body")
+        refreshToken = req.body.refreshToken;
+    }
 
     if (refreshToken) {
         try {
-            console.log("Verify tokens, refresh secrt: " + process.env.REFRESH_TOKEN_SECRET)
-            console.log("Verify tokens, refresh signd cooks: " + refreshToken)
+            // console.log("Verify tokens, refresh secrt: " + process.env.REFRESH_TOKEN_SECRET)
+            // console.log("Verify tokens, refresh signd cooks: " + refreshToken)
             // to fix:
             const payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET)
             console.log("Verified tokens")
             const userId = payload._id
-            console.log("Searching User")
-            User.findOne({ _id: userId }).then(
+            console.log("Searching User: id=" + userId)
+            Usuario.findOne({ _id: userId }).then(
                 user => {
                     if (user) {
+                        console.log("Founded User")
+
                         // Find the refresh token against the user record in database
                         const tokenIndex = user.refreshToken.findIndex(
                             item => item.refreshToken === refreshToken
                         )
 
                         if (tokenIndex === -1) {
+                            console.log("Unauthorized request: " +refreshToken)
+
                             res.statusCode = 401
-                            res.send("Unauthorized")
+                            res.send("Unauthorized: " )
                         } else {
                             const token = getToken({ _id: userId })
                             // If the refresh token exists, then create new one and replace it.
@@ -101,10 +129,13 @@ router.post("/refreshToken", (req, res, next) => {
                             user.save((err, user) => {
                                 if (err) {
                                     res.statusCode = 500
+                                    console.log("500 error")
+
                                     res.send(err)
                                 } else {
+                                    console.log("new refresh token")
                                     res.cookie("refreshToken", newRefreshToken, COOKIE_OPTIONS)
-                                    res.send({ success: true, token })
+                                    res.send({ success: true, token, refreshToken: newRefreshToken })
                                 }
                             })
                         }
@@ -117,7 +148,7 @@ router.post("/refreshToken", (req, res, next) => {
             )
         } catch (err) {
             res.statusCode = 401
-            res.send("Unauthorized. Trying payload")
+            res.send("Unauthorized. user or payload not working")
         }
     } else {
         res.statusCode = 401

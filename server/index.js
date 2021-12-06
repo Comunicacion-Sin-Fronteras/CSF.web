@@ -5,6 +5,9 @@ const passport = require("passport")
 
 const database = require('./database')
 const router = require('./router/router')
+// import {APIDescriptor} from './router/api_descriptor'
+
+const APIDescriptor = require('./router/api_descriptor');
 
 require("dotenv").config()
 process.env.test = "working";
@@ -40,7 +43,7 @@ app.use(passport.initialize())
 database.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.get('/', (req, res) => {
-    res.send({ status: "success, server running.", api_directions: {api_status: "/", status: "available"} })
+    res.send(APIDescriptor)
 })
 
 app.use('/api', router)
