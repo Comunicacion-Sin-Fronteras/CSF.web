@@ -1,5 +1,8 @@
-import UsersList from './SeniasList'
-import UsersInsert from './SeniasInsert'
-import UsersUpdate from './SeniasUpdate'
+import Iniciarsesion from './Iniciarsesion'
+import NuevaContrasena from './NuevaContrasena'
+import Registrarse from './Registrarse'
+import RecuperarContrasena from './RecuperarContrasena'
+import VerificarCorreo from './VerificarCorreo'
+import EditarCuenta from './EditarCuenta'
 
-export { UsersList, UsersInsert, UsersUpdate }
+export {Iniciarsesion, NuevaContrasena, Registrarse, RecuperarContrasena, VerificarCorreo, EditarCuenta}

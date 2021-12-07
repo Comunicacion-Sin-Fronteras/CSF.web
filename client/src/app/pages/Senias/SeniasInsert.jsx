@@ -4,7 +4,7 @@ class SeniasInsert extends Component {
     render() {
         return (
             <div>
-                <p>In this page you'll see the form to add a senia</p>
+                <p>este senia insert</p>
             </div>
         );
     }
