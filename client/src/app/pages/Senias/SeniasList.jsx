@@ -4,7 +4,7 @@ class SeniasList extends Component {
     render() {
         return (
             <div>
-                <p>In this page you'll see the list of senias</p>
+                <p>a</p>
             </div>
         );
     }
