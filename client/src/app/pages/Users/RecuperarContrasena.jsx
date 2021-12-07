@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, Input } from "reactstrap";
 import "./PantallasUsuario.css";
-import Logotipo_Dark_Animated from "../../img/Logotipo_Dark_Animated.gif";
+import Logotipo_Dark from "../../img/Logotipo_Dark.png";
 
 class RecuperarContrasena extends Component {
   render() {
@@ -9,7 +9,7 @@ class RecuperarContrasena extends Component {
       <div class="principal">
         <div class="container">
           <div class="logo">
-            <img src={Logotipo_Dark_Animated}  width="240px" />
+            <img src={Logotipo_Dark}  width="240px" />
           </div>
           <div class="formulario" role="alert">
             <h1>Recuperar Contraseña</h1>
