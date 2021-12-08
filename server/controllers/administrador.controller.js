@@ -33,8 +33,16 @@ createNewAdmin = (req, res) => {
 }
 
 getDataAdmin = (req,res) => {
-    console.log(req.query.id)
-    Administrador.findById(req.query.id, (err, result) => {
+    const body = req.body
+
+    if(!body){
+        return res.status(400).json({
+            success: false,
+            error: 'No hay datos en body'
+        })
+    }
+
+    Administrador.findById(body.id, (err, result) => {
         if(err){
             return res.status(400).json({
                 success: false,
