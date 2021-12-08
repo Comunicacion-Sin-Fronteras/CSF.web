@@ -1,8 +1,9 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import { NuevaContrasena, Registrarse, RecuperarContrasena, VerificarCorreo, EditarCuenta} from '../pages/Users'
 import { SeniasList, SeniasInsert, SeniasUpdate } from '../pages/Senias'
 import { NotFoundError } from '../pages/Errors/'
+import HomeJuegos from '../pages/Juegos/HomeJuegos'
 
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -18,6 +19,7 @@ function AppRouting() {
                 <Route path="/users/Registrarse" exact element={<Registrarse/>}/>
                 <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo/>}/>
                 <Route path="/users/EditarCuenta" exact element={<EditarCuenta/>}/>
+                <Route path="/juegos/Home" exact element={<HomeJuegos/>}/>
                 <Route path="/" element={<div>Home</div>} />
                 <Route path="*" element={<NotFoundError/>} />
             </Routes>
