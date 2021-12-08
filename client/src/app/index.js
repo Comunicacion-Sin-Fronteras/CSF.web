@@ -1,20 +1,14 @@
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './app.css';
 import AppRouting from './router';
-import 'bootstrap/dist/css/bootstrap.min.css'
-// require("dotenv").config()
-const BASE_URL = process.env.REACT_APP_SERVER_API_ENDPOINT;
 
 function App() {
-  return (
-    <main className="App">
-      <AppRouting></AppRouting>
-      <p>
-        COMUNICACIÓN SIN FRONTERAS
-      </p>
-      <p>CONFIG: {BASE_URL}</p>
-    </main>
-  );
+    return ( 
+        < main className = "App">
+        < AppRouting > </AppRouting > 
+        <p>COMUNICACION SIN FRONTERAS</p>  
+        </main >
+    );
 }
 
 export default App;

@@ -2,7 +2,16 @@ const Historial = require('../models/historial.model')
 const Contenido = require('../models/Contenido.model')
 
 getActivityHistory = async (req, res) => {
-    const historial = await Historial.find({ Nombre_Usuario: req.query.Nombre_Usuario })
+    const body = req.body
+
+    if(!body){
+        return res.status(200).json({
+            success: false,
+            error: 'No hay datos para consulta'
+        })
+    }
+
+    const historial = await Historial.find({ Nombre_Usuario: body.Nombre_Usuario })
     if (!historial) {
         return res.status(200).json({
             success: true,
@@ -70,7 +79,16 @@ addActivityToHistory = (req, res) => {
     })
 }
 getHistoryContent = async (req,res)=> {
-    const palabras = await Contenido.find({ID_Actividad: req.query.Activity, Nombre_Usuario: req.query.Nombre_Usuario})
+    const body = req.body
+
+    if(!body){
+        return res.status(400).json({
+            success: false,
+            error: 'No hay datos para busqueda'
+        })
+    }
+
+    const palabras = await Contenido.find({ID_Actividad: body.Activity, Nombre_Usuario: body.Nombre_Usuario})
     if(!palabras){
         return res.status(400).json({
             success: false,
