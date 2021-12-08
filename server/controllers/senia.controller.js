@@ -11,7 +11,7 @@ createSenia = (req, res) => {
     }
 
     const senia = new Senia(body)
-    console.log(body);
+    // console.log(body);
 
     if (!senia) {
         return res.status(400).json({ success: false, error: err })
