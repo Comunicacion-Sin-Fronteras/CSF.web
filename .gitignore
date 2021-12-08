@@ -1,2 +1,7 @@
 
+client/.env
+
+
 mongo/
+
+.vs/
