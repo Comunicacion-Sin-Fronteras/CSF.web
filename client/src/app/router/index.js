@@ -1,5 +1,5 @@
 import React from 'react'
-import { NuevaContrasena, Registrarse, RecuperarContrasena, VerificarCorreo, EditarCuenta} from '../pages/Users'
+import { NuevaContrasena, Registrarse, RecuperarContrasena, VerificarCorreo, EditarCuenta } from '../pages/Users'
 import { BrowserRouter as Router, Link, Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import { SeniasList, SeniasInsert, SeniasUpdate } from '../pages/Senias'
 import { NotFoundError } from '../pages/Errors/'
@@ -19,15 +19,19 @@ function AppRouting() {
                     <Route path="/senia" element={<PrivateRoute />}>
                         <Route path="/senia/create" element={<SeniasInsert />} />
                         <Route path="/senia/list" element={<SeniasList />} />
-                        <Route path="/senia/update/:id" exact element={<SeniasUpdate/>}/>
+                        <Route path="/senia/update/:id" exact element={<SeniasUpdate />} />
                     </Route>
                     
-                <Route path="/users/NuevaContrasena" exact element={<NuevaContrasena/>}/>
-                <Route path="/users/RecuperarContrasena" exact element={<RecuperarContrasena/>}/>
-                <Route path="/users/Registrarse" exact element={<Registrarse/>}/>
-                <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo/>}/>
-                <Route path="/users/EditarCuenta" exact element={<EditarCuenta/>}/>
-                <Route path="/juegos/Home" exact element={<HomeJuegos/>}/>
+                    <Route path="/users/NuevaContrasena" exact element={<NuevaContrasena />} />
+                    <Route path="/users/RecuperarContrasena" exact element={<RecuperarContrasena />} />
+                    <Route path="/users/Registrarse" exact element={<Registrarse />} />
+                    <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo />} />
+
+                    <Route path="/users" element={<PrivateRoute />}>
+                        <Route path="/users/EditarCuenta" exact element={<EditarCuenta />} />
+                    </Route>
+                    
+                    <Route path="/juegos/Home" exact element={<HomeJuegos />} />
                     <Route
                         path="/senia/update/:id"
                         exact
@@ -39,7 +43,7 @@ function AppRouting() {
             </Router>
         </Container>
 
-                
+
     )
     // }
 
