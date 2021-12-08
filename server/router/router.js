@@ -22,4 +22,8 @@ router.post('/activities', ActivityController.addActivityToHistory)
 router.get('/activities', ActivityController.getActivityHistory)
 router.get('/activity', ActivityController.getHistoryContent)
 
+router.get('/game', JuegoController.getSeniasbyDifEasy)
+router.get('/game', JuegoController.getSeniasbyDifMed)
+router.get('/game', JuegoController.getSeniasbyDifHard)
+
 module.exports = router
