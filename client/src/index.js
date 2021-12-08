@@ -8,9 +8,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserProvider>
       <App />
-    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
