@@ -9,10 +9,11 @@ import tokenService from '../components/Auth/services/tokenService';
 import axios from 'axios';
 import Cookies from "universal-cookie";
 import HomeJuegos from '../pages/Juegos/HomeJuegos'
+import HomeNotLoggin from '../pages/Home/HomeNoRegistrado'
 
 function AppRouting() {
     return (
-        <Container>
+        // <Container>
             <Router>
                 <Routes>
                     <Route path="/auth/login" exact element={<UserLogin></UserLogin>} />
@@ -37,11 +38,11 @@ function AppRouting() {
                         exact
                         element={<SeniasUpdate />}
                     />
-                    <Route path="/" element={<div>Home not loggin</div>} />
+                    <Route path="/" element={<HomeNotLoggin/>} />
                     <Route path="*" element={<NotFoundError />} />
                 </Routes>
             </Router>
-        </Container>
+        //</Container>
 
 
     )
