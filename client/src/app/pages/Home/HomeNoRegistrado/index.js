@@ -5,9 +5,9 @@ import {Card} from './Card';
 import cd from './data';
 import { Button } from "reactstrap";
 
-function App() {
+function HomeNotLoggin() {
   return (
-    <main className="App">
+    <div>
       <Nav/>
       <Test/>
       <div className="divC">
@@ -21,8 +21,8 @@ function App() {
         </Card>
       ))}
       </div>
-    </main>
+    </div>
   );
 }
 
-export default App;
+export default HomeNotLoggin;
