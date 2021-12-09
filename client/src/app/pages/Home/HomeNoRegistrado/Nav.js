@@ -5,7 +5,7 @@ import { Button } from "reactstrap"
 import './app.css';
 import logo from './Logotipo_Dark.png';
 
-const style = { height:"70px",  width: "70px" };
+const style = { height: "70px", width: "70px" };
 
 export default class TopNav extends React.Component {
   render() {
@@ -36,7 +36,9 @@ export default class TopNav extends React.Component {
                 <Link to="/auth/login">
                   <Button className="bc" color="secondary">Iniciar Sesión</Button>{' '}
                 </Link>
-                <Button className="bc" color="secondary">Registrate</Button>{' '}
+                <Link to="/users/Registrarse">
+                  <Button className="bc" color="secondary">Registrate</Button>{' '}
+                </Link>
               </div>
             </NavbarText>
           </Collapse>
