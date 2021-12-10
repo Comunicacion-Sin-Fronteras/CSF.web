@@ -17,7 +17,7 @@ export const getAllSenias = () => axios.get('http://localhost:3000/api/senia/')
 export const updateSeniaById = (id, payload) => api.put(`/senia/${id}`, payload)
 export const deleteSeniaById = id => api.delete(`/senia/${id}`)
 export const getSeniaById = id => api.get(`/senia/${id}`)
-export const allActivities = (payload) => api.get('/activities',JSON.stringify(payload))
+export const getHistory = (payload) => api.post('/history',payload)
 
 const apis = {
     insertSenia,
@@ -25,7 +25,7 @@ const apis = {
     updateSeniaById,
     deleteSeniaById,
     getSeniaById,
-    allActivities,
+    getHistory,
 }
 
 export default apis

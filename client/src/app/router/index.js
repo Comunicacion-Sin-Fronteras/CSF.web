@@ -29,7 +29,7 @@ function AppRouting() {
                     <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo />} />
                     {/* Remover linea 31 al final de las pruebas*/}
                     <Route path="/users/Historial" exact element={<Historial />} />
-                    <Route path="/users/Historial/:User" exact element={<Historial />} />
+                    <Route path="/users/Historial/:User" exact element={<Historial/> }/>
 
                     <Route path="/users" element={<PrivateRoute />}>
                         <Route path="/users/EditarCuenta" exact element={<EditarCuenta />} />
