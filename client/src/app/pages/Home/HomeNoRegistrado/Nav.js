@@ -30,6 +30,14 @@ export default class TopNav extends React.Component {
               <NavItem>
                 <NavLink>Juegos</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink>
+                  {/*Eliminar este elemento al acabar las pruebas*/}
+                  <Link to="/users/Historial">
+                    Historial
+                  </Link>
+                </NavLink>
+              </NavItem>
             </Nav>
             <NavbarText>
               <div>

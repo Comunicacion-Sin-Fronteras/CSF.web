@@ -1,5 +1,6 @@
 import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,NavbarText, Col, } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Col, } from 'reactstrap';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
 import './app.css';
 import logo from './Logotipo_Dark.png';
@@ -13,23 +14,29 @@ export default class TopNav extends React.Component {
     return (
       <div>
         <Navbar className="color-nav" expand="md" light>
-        <Col sm="1" xs="1">
-          <img
-            alt="..."
-            className="img-fluid rounded-circle shadow"
-            src={logo}
-            style={style}
-          ></img>
-        </Col>
+          <Col sm="1" xs="1">
+            <img
+              alt="..."
+              className="img-fluid rounded-circle shadow"
+              src={logo}
+              style={style}
+            ></img>
+          </Col>
           <NavbarBrand href="/">Comunicación sin Fronteras</NavbarBrand>
-          <NavbarToggler onClick={function noRefCheck(){}} />
+          <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
               <NavItem>
                 <NavLink>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink>Juegos</NavLink>
+                <NavLink tag={Link} to="/juegos/Home">Juegos</NavLink>
+              </NavItem>
+              <NavItem>
+                {/* Linea 37 se cambia "David por el usuario actual" */}
+                <NavLink tag={Link} to={"/users/Historial/"+"David"}>
+                  Historial
+                </NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
@@ -40,7 +47,7 @@ export default class TopNav extends React.Component {
                   src={user}
                   style={style2}
                 ></img>
-              <UncontrolledDropdown>
+                <UncontrolledDropdown>
                   <DropdownToggle>Opciones</DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem>Perfil</DropdownItem>
