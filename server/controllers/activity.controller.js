@@ -5,15 +5,15 @@ getActivityHistory = async (req, res) => {
     const body = req.body
 
     if(!body){
-        return res.status(200).json({
+        return res.status(400).json({
             success: false,
             error: 'No hay datos para consulta'
         })
     }
 
     const historial = await Historial.find({ Nombre_Usuario: body.Nombre_Usuario })
-    if (!historial) {
-        return res.status(200).json({
+    if (historial.length==0) {
+        return res.status(204).json({
             success: true,
             message: 'No se ha Realizado ninguna Actividad'
         })
