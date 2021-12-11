@@ -9,6 +9,7 @@ import tokenService from '../components/Auth/services/tokenService';
 import axios from 'axios';
 import Cookies from "universal-cookie";
 import HomeJuegos from '../pages/Juegos/HomeJuegos'
+import Adivina from '../pages/Juegos/Pantalla/index'
 import HomeNotLoggin from '../pages/Home/HomeNoRegistrado'
 
 function AppRouting() {
@@ -36,6 +37,7 @@ function AppRouting() {
                     </Route>
                     
                     <Route path="/juegos/Home" exact element={<HomeJuegos />} />
+                    <Route path="/juegos/Adivina" exact element={<Adivina />} />
                     <Route
                         path="/senia/update/:id"
                         exact
