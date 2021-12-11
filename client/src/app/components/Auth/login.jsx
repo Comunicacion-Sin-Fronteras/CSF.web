@@ -43,6 +43,12 @@ export default function Login() {
                 cookies.set("REFRESHTOKEN", data.refreshToken, {
                     path: "/",
                 });
+                cookies.set("USER", data.user, {
+                    path: "/",
+                });
+                cookies.set("ID", data.id, {
+                    path: "/",
+                });
                 // this.props.history.push('/senia/list')
                 //  console.log("setting new token:" + data.token)
                 console.log("setting new token:" + cookies.get("TOKEN"))

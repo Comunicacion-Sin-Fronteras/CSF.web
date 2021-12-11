@@ -62,27 +62,30 @@ class SeniasList extends Component {
                     filterable: true,
                 },
                 {
-                    Header: 'nombre',
-                    accessor: 'nombre',
+                    Header: 'Palabra',
+                    accessor: 'Palabra',
                     filterable: true,
                 },
                 {
                     Header: 'Miniature Imagen',
-                    accessor: 'URLImagen',
+                    accessor: 'URL_Imagen',
                     filterable: true,
                     Cell: function (props) {
                         return (
                             <div>
                                 {/* img: {props.row.values.URLImagen} */}
-                                <img src={props.row.values.URLImagen} />
+                                <img src={props.row.values.URL_Imagen} />
                             </div>
                             
                         )
                     },
                 },
                 {
-                    Header: 'descripcion',
-                    accessor: 'descripcion',
+                    Header: 'Descripcion',
+                    accessor: 'Descripcion',
+                }, {
+                    Header: 'Categoria',
+                    accessor: 'Categoria',
                 },
                 {
                     Header: 'Opciones',

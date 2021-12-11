@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import Login from '../../components/Auth/login';
+import Registrarse from './Registrarse';
 
 class UserLogin extends Component {
     constructor(props) {
@@ -13,6 +14,8 @@ class UserLogin extends Component {
             buttonLabel: 'Registro',
             isLogin: true
         }
+        // var userLogin = [];
+
     }
     componentWillMount() {
         var userLogin = [];
@@ -28,7 +31,7 @@ class UserLogin extends Component {
         var loginmessage;
         if (this.state.isLogin) {
             var userLogin = [];
-            // userLogin.push(<Register parentContext={this} />);
+            userLogin.push(<Registrarse parentContext={this} />);
             loginmessage = "Already registered.Go to Login";
             this.setState({
                 userLogin: userLogin,
@@ -66,7 +69,5 @@ class UserLogin extends Component {
         );
     }
 }
-const style = {
-    margin: 15,
-};
+
 export default UserLogin;

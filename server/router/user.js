@@ -79,7 +79,7 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
                     res.send(err)
                 } else {
                     res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
-                    res.send({ success: true, token, refreshToken, userID })
+                    res.send({ success: true, token, refreshToken, user })
                 }
             })
         },
