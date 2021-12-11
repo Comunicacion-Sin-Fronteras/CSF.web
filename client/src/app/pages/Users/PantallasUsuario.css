@@ -5,9 +5,9 @@
 .bg-container{
 	background-color: #22201C;
 }
- body{
+ /* body{
  	overflow: hidden;
- }
+ } */
 
  
  .container{
@@ -21,11 +21,13 @@
  	justify-content: center;
  	align-items: center;
 	background-color: #22201C;
+	/* overflow: -moz-scrollbars-vertical;  */
+    /* overflow-y: auto;  */
  }
 
  .formulario{
 	margin-top: 122px;
-	width:100%;
+	width:80%;
 	height: 290px;
 	position: absolute;
 	background-color: #22201C;
@@ -52,7 +54,7 @@
  }
 
  .logo{
-	width:70em;
+	width:70vw;
 	height: 240px;
 	margin-bottom: 390px;
 	position: absolute;
@@ -67,13 +69,17 @@
 	background-color: #22201C;
  }
 
- .Regresar{
-	background-color: #22201C;
-	width:99%;
-	height: 18%;
-	margin-top: 45%;
-	position:absolute;
- }
+
+ @media screen 
+ and (min-device-width: 1200px) 
+ and (max-device-width: 1600px) 
+ and (-webkit-min-device-pixel-ratio: 1) {
+	.Regresar{
+		position:relative;
+		left: -40vw;
+		top: -10vh;
+	}
+}
 
  .Usuario{
 	width:120%;

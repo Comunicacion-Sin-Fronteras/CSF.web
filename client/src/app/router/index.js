@@ -25,7 +25,7 @@ function AppRouting() {
                     
                     <Route path="/users/NuevaContrasena" exact element={<NuevaContrasena />} />
                     <Route path="/users/RecuperarContrasena" exact element={<RecuperarContrasena />} />
-                    <Route path="/users/Registrarse" exact element={<Registrarse />} />
+                    <Route path="/users/Registrarse" exact element={<UserLogin isSignUp={true}/>} />
                     <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo />} />
                     {/* Remover linea 31 al final de las pruebas*/}
                     <Route path="/users/Historial" exact element={<Historial />} />
