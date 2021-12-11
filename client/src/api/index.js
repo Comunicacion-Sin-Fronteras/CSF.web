@@ -13,6 +13,7 @@ export const getAllSenias = () => api.get('/senia/')
 export const updateSeniaById = (id, payload) => api.put(`/senia/${id}`, payload)
 export const deleteSeniaById = id => api.delete(`/senia/${id}`)
 export const getSeniaById = id => api.get(`/senia/${id}`)
+export const getHistory = (payload) => api.post('/history',payload)
 
 const apis = {
     insertSenia,
@@ -20,6 +21,7 @@ const apis = {
     updateSeniaById,
     deleteSeniaById,
     getSeniaById,
+    getHistory,
 }
 
 export default apis

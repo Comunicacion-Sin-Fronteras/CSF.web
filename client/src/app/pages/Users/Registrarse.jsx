@@ -4,6 +4,7 @@ import "./PantallasUsuario.css";
 import Logotipo_Dark from "../../img/Logotipo_Dark.png";
 import Cookies from "universal-cookie";
 import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Registrarse extends Component {
   constructor(props) {
@@ -172,7 +173,6 @@ class Registrarse extends Component {
           <div className="Regresar">
             <Button
               type="submit"
-              s
               style={{
                 backgroundColor: "#22201C",
                 marginTop: "2em",
@@ -195,6 +195,7 @@ class Registrarse extends Component {
                 <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
               </svg>
             </Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,NavbarText, Col, } from 'reactstrap';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
-import './Registrado.css';
+import './app.css';
 import logo from './Logotipo_Dark.png';
 import user from './user.png';
 

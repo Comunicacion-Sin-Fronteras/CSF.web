@@ -2,7 +2,9 @@
 .principal{
 	background: #22201C;
 }
-
+.bg-container{
+	background-color: #22201C;
+}
  body{
  	overflow: hidden;
  }

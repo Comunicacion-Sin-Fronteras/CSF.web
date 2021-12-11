@@ -1,5 +1,5 @@
-import './NoRegistrado.css';
-import Nav from './Nav';
+import './Registrado.css';
+import Nav from './Nav2';
 import Test from './Test';
 import {Card} from './Card';
 import cd from './data';
@@ -8,7 +8,7 @@ import { Button } from "reactstrap";
 function HomeNotLoggin() {
   return (
     <html>
-      <body className='bodyNoRegistrado'>
+      <body className='bodyRegistrado'>
         <div>
           <Nav/>
           <Test/>

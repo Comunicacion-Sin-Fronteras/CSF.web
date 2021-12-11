@@ -3,7 +3,7 @@ const Contenido = require('../models/Contenido.model')
 
 getSeniasbyDifEasy = async (req, res) => { 
 
-    juego.count().exec(function (err, count) {
+    juego.count({ Dificultad: 'easy' }).exec(function (err, count) {
 
         var random = Math.floor(Math.random() * count)
 
@@ -24,7 +24,7 @@ getSeniasbyDifEasy = async (req, res) => {
 
 getSeniasbyDifMed = async (req, res) => {
 
-    juego.count().exec(function (err, count) {
+    juego.count({ Dificultad: 'medium' }).exec(function (err, count) {
 
         var random = Math.floor(Math.random() * count)
 
@@ -45,7 +45,7 @@ getSeniasbyDifMed = async (req, res) => {
 
 getSeniasbyDifHard = async (req, res) => {
 
-    juego.count().exec(function (err, count) {
+    juego.count({ Dificultad: 'hard' }).exec(function (err, count) {
 
         var random = Math.floor(Math.random() * count)
 

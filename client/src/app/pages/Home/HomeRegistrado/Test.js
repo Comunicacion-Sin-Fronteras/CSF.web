@@ -1,17 +1,17 @@
 import React from "react";
 import gif from './gif.gif';
-import './app.css';
+import './Registrado.css';
 // reactstrap components
 import { Row, Col, UncontrolledTooltip } from "reactstrap";
 
-const style = { width: "400px" };
+const style = { width: "300px" };
 
 function Example() {
   return (
     <>
     <div className = "divG">
         <Row className=" mt">
-            <p className="a">Bienvenido</p>
+            <p className="titulo">Bienvenido</p>
             <Col sm="12" xs="3">
                 <a className=" avatar avatar-xs rounded-circle">
                     <img
