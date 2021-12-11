@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import { Button, FormGroup, Input, Label, Form, Row, Col } from "reactstrap";
+import { Button, FormGroup, Input, Form, Col } from "reactstrap";
 import "./PantallasUsuario.css";
-import Logotipo_Dark from "../../img/Logotipo_Dark.png";
+import { Link } from 'react-router-dom';
+import Logotipo_Dark_Animated from "../../img/animated/Logotipo_Dark_Animated.gif"
 
 class NuevaContrasena extends Component {
   render() {
     return (
       <div class="principal">
-        <div class="container">
-          <div class="logo">
-            <img src={Logotipo_Dark} width="240px" />
+        <div class="containerUsuarios">
+          <div class="logoUsuarios">
+            <img src={Logotipo_Dark_Animated} width="210px" align="right"  />
           </div>
           <div class="formulario" role="alert">
             <h1>Nueva contraseña</h1>
@@ -65,15 +66,12 @@ class NuevaContrasena extends Component {
                 </svg>
               </Button>
             </div>
-          </div>
-          <div class="Regresar">
+            <Link to="/">
             <Button
-              type="submit"
-              onClick=" "
               style={{
                 backgroundColor: "#22201C",
-                marginTop: "2em",
-                marginRight: "65em",
+                marginTop: "3%",
+                marginRight: "90%",
                 border: "#22201C",
               }}
             >
@@ -92,6 +90,7 @@ class NuevaContrasena extends Component {
                 <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
               </svg>
             </Button>
+            </Link>
           </div>
         </div>
       </div>

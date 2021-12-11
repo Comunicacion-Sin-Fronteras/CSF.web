@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { Button, FormGroup, Input, Label, Col, Form, Row } from "reactstrap";
 import "./PantallasUsuario.css";
-import Logotipo_Dark from "../../img/Logotipo_Dark.png";
+import { Link } from 'react-router-dom';
+import Logotipo_Dark_Animated from "../../img/animated/Logotipo_Dark_Animated.gif";
 import Usuario from "../../img/Usuario.png";
 
 class EditarCuenta extends Component {
   render() {
     return (
       <div class="principal">
-        <div class="container">
+        <div class="containerUsuarios">
           <div class="Usuario">
             <Button
               type="submit"
@@ -26,7 +27,7 @@ class EditarCuenta extends Component {
             
           </div>
           <div class="logo2">
-              <img src={Logotipo_Dark} width="70%" align="right" alt="logo" />
+              <img src={Logotipo_Dark_Animated} width="70%" align="right"/>
             </div>
           <div class="formulario">
             <h1>Editar Cuenta</h1>
@@ -144,8 +145,8 @@ class EditarCuenta extends Component {
               onClick=" "
               style={{
                 backgroundColor: "#22201C",
-                marginTop: "2em",
-                marginRight:"65em",
+                marginBottom: "5%",
+                marginRight: "90%",
                 border:"#22201C",
               }}
             >
