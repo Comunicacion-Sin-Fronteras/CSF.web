@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { Button, FormGroup, Input, Label, Col, Form, Row } from "reactstrap";
 import "./PantallasUsuario.css";
-import { Link } from 'react-router-dom';
-import Logotipo_Dark_Animated from "../../img/animated/Logotipo_Dark_Animated.gif"
+import Logotipo_Dark from "../../img/Logotipo_Dark.png";
 
 class Registrarse extends Component {
   render() {
     return (
       <div class="principal">
-        <div class="containerUsuarios">
-          <div class="logoUsuarios  ">
-            <img src={Logotipo_Dark_Animated} width="210px" align="right" />
+        <div class="container">
+          <div class="logo">
+            <img src={Logotipo_Dark} width="240px" />
           </div>
           <div class="formulario">
             <h1>Resgistro</h1>
@@ -57,7 +56,6 @@ class Registrarse extends Component {
               </Form>
             </div>
             <div>
-              
               <Button
                 type="submit"
                 onClick=" "
@@ -65,8 +63,7 @@ class Registrarse extends Component {
                 style={{
                   backgroundColor: "#22201C",
                   border: "#22201C",
-                  marginTop: "5%",
-                marginRight: "2%",
+                  marginTop: "35px",
                 }}
               >
                 <svg
@@ -82,14 +79,15 @@ class Registrarse extends Component {
                 </svg>
               </Button>
             </div>
-            <Link to="/">
+          </div>
+          <div class="Regresar">
             <Button
               type="submit"
               onClick=" "
               style={{
                 backgroundColor: "#22201C",
-                marginTop: "3%",
-                marginRight: "90%",
+                marginTop: "2em",
+                marginRight: "65em",
                 border: "#22201C",
               }}
             >
@@ -108,7 +106,6 @@ class Registrarse extends Component {
                 <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z" />
               </svg>
             </Button>
-            </Link>
           </div>
         </div>
       </div>

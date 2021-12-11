@@ -8,26 +8,25 @@
  }
 
  
- .containerUsuarios{
+ .container{
  	position: relative;
-	padding: 10%;
- 	width: 90%;
+	padding: auto;
+ 	width: 580px;
 	height: 650px;
+ 	min-height: 400px;
  	border-radius: 10px;
  	display: flex;
  	justify-content: center;
  	align-items: center;
-	margin-left:5%;
-	margin-left: 55;
-	background-color:#bd4040;
+	background-color: #22201C;
  }
 
  .formulario{
-	margin-top: 18%;
+	margin-top: 122px;
 	width:100%;
-	height: 65%;
+	height: 290px;
 	position: absolute;
-	background-color: #34c86d;
+	background-color: #22201C;
  }
 
  h1::first-letter{
@@ -44,34 +43,33 @@
 	position: center;
 	margin-right: 100px;
 	width: 500px;
-	background-color: darkorchid;
  }
  
  label{
 	 color: #ffffff;
  }
 
- .logoUsuarios{
-	width:99%;
-	height: 32%;
-	margin-bottom: 36%;
+ .logo{
+	width:70em;
+	height: 240px;
+	margin-bottom: 390px;
 	position: absolute;
-	background-color: #43b0be;
+	background-color: #22201C;
  }
  
  .logo2{
 	width:50%;
 	height: 46%;
 	justify-content: left;
-	margin-bottom: 30%;	
-	background-color: #e242cd;
+	margin-bottom: 30%;
+	background-color: #22201C;
  }
 
  .Regresar{
-	background-color: #bacc17;
+	background-color: #22201C;
 	width:99%;
 	height: 18%;
-	
+	margin-top: 45%;
 	position:absolute;
  }
 
@@ -88,5 +86,4 @@
 	background-color: #22201C;
 	display: flex;
 	justify-content: center;
-	position:absolute;
  }
