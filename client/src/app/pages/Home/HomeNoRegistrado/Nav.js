@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarText, Col } from 'reactstrap';
 import { Button } from "reactstrap"
-import './app.css';
+import './NoRegistrado.css';
 import logo from './Logotipo_Dark.png';
 
 const style = { height:"70px",  width: "70px" };
@@ -28,7 +28,7 @@ export default class TopNav extends React.Component {
                 <NavLink>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink>Juegos</NavLink>
+                <NavLink href="./Adivina">Juegos</NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
