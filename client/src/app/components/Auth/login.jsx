@@ -47,7 +47,9 @@ export default function Login() {
                 //  console.log("setting new token:" + data.token)
                 console.log("setting new token:" + cookies.get("TOKEN"))
                 console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
-                navigate("/senia/list");
+                console.log("user stted:" )
+                console.log(cookies.get("USER"))
+                navigate("/home");
             }
         }).catch(error => {
             setIsSubmitting(false)

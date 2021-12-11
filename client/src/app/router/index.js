@@ -10,6 +10,7 @@ import axios from 'axios';
 import Cookies from "universal-cookie";
 import HomeJuegos from '../pages/Juegos/HomeJuegos'
 import HomeNotLoggin from '../pages/Home/HomeNoRegistrado'
+import HomeLoggin from '../pages/Home/HomeRegistrado'
 
 function AppRouting() {
     return (
@@ -17,6 +18,10 @@ function AppRouting() {
             <Router>
                 <Routes>
                     <Route path="/auth/login" exact element={<UserLogin></UserLogin>} />
+                    <Route path="/home" element={<PrivateRoute />}>
+                        <Route path="/home/" element={<HomeLoggin/>} />
+                    </Route>
+
                     <Route path="/senia" element={<PrivateRoute />}>
                         <Route path="/senia/create" element={<SeniasInsert />} />
                         <Route path="/senia/list" element={<SeniasList />} />
