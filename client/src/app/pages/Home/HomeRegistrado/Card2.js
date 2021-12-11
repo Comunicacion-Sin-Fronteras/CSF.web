@@ -27,11 +27,11 @@ export const Title = styled.h1`
   font-family: 'Signika', sans-serif;
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `;
 
 export const Text = styled.p`
-  line-height: 35px;
+  line-height: 30px;
   color: #6c757d;
 `;
 

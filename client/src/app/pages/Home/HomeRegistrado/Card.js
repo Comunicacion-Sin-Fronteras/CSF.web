@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Container, Body, Title, Text} from './Card2';
-import './app.css';
+import './Registrado.css';
 
 export function Card({ classes, children, ...restProps }) {
   return (
