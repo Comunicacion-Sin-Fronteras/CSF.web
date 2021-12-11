@@ -1,21 +1,19 @@
 const juego = require('../models/senia.model')
-const Contenido = require('../models/Contenido.model')
 
 getSeniasbyDifEasy = async (req, res) => { 
 
-    juego.count().exec(function (err, count) {
+    juego.count({ Dificultad: 'easy' }).exec(function (err, count) {
 
-        var random = Math.floor(Math.random() * count)
-
-        //Cual podria ser el valor maximo?
-        juego.find({ Dificultad: 'easy' }).limit(5).skip(random).exec(
-            function (err, result) {
+        juego.aggregate([
+            { $match: { Dificultad: 'easy' } },
+            { $sample: { size: 5 } }
+        ], function (err, result) {
                 
-                return res.status(200).json({ success: true, data: result })
+                return res.status(200).json({ count, success: true, data: result })
                 if (err) {
                     return res.status(400).json({ success: false, error: err })
                 }
-            })
+        })
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -24,15 +22,14 @@ getSeniasbyDifEasy = async (req, res) => {
 
 getSeniasbyDifMed = async (req, res) => {
 
-    juego.count().exec(function (err, count) {
+    juego.count({ Dificultad: 'medium' }).exec(function (err, count) {
 
-        var random = Math.floor(Math.random() * count)
+        juego.aggregate([
+            { $match: { Dificultad: 'medium' } },
+            { $sample: { size: 5 } }
+        ],  function (err, result) {
 
-        //Cual podria ser el valor maximo?
-        juego.find({ Dificultad: 'medium' }).limit(5).skip(random).exec(
-            function (err, result) {
-
-                return res.status(200).json({ success: true, data: result })
+                return res.status(200).json({count, success: true, data: result })
                 if (err) {
                     return res.status(400).json({ success: false, error: err })
                 }
@@ -45,15 +42,14 @@ getSeniasbyDifMed = async (req, res) => {
 
 getSeniasbyDifHard = async (req, res) => {
 
-    juego.count().exec(function (err, count) {
+    juego.count({ Dificultad: 'hard' }).exec(function (err, count) {
 
-        var random = Math.floor(Math.random() * count)
+        juego.aggregate([
+            { $match: { Dificultad: 'hard' } },
+            { $sample: { size: 5 } }
+        ], function (err, result) {
 
-        //Cual podria ser el valor maximo?
-        juego.find({ Dificultad: 'hard' }).limit(5).skip(random).exec(
-            function (err, result) {
-
-                return res.status(200).json({ success: true, data: result })
+                return res.status(200).json({ count, success: true, data: result })
                 if (err) {
                     return res.status(400).json({ success: false, error: err })
                 }
