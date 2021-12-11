@@ -25,7 +25,8 @@
         "semantic-ui-react": "^2.0.4",
         "styled-components": "^5.3.3",
         "universal-cookie": "^4.0.4",
-        "web-vitals": "^2.1.2"
+        "web-vitals": "^2.1.2", 
+        "firebase": "^9.6.0"
     },
     "scripts": {
         "start": "set PORT=3006 && react-scripts start",
@@ -51,4 +52,5 @@
             "last 1 safari version"
         ]
     }
+    
 }
