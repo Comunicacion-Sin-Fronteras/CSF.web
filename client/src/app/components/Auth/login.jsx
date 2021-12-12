@@ -43,7 +43,17 @@ export default function Login() {
                 cookies.set("REFRESHTOKEN", data.refreshToken, {
                     path: "/",
                 });
-                cookies.set("USER", data.user, {
+                let user = {
+                    "_id": data.user._id,
+                    "username": data.user.username,
+                    "createdAt": data.user.createdAt,
+                    "updatedAt": data.user.updatedAt,
+                    "Fecha_de_Nacimiento": data.user.Fecha_de_Nacimiento,
+                    "correo_Electronico": data.user.correo_Electronico,
+                    "nombre": data.user.nombre,
+                    "sexo": data.user.sexo
+                }
+                cookies.set("USER", user, {
                     path: "/",
                 });
                 cookies.set("ID", data.id, {
@@ -51,9 +61,9 @@ export default function Login() {
                 });
                 // this.props.history.push('/senia/list')
                 //  console.log("setting new token:" + data.token)
-                console.log("setting new token:" + cookies.get("TOKEN"))
-                console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
-                console.log("user stted:" )
+                // console.log("setting new token:" + cookies.get("TOKEN"))
+                // console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
+                // console.log("user stted:")
                 console.log(cookies.get("USER"))
                 navigate("/home");
             }
