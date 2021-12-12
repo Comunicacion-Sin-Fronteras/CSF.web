@@ -33,9 +33,8 @@ function AppRouting() {
                     <Route path="/users/RecuperarContrasena" exact element={<RecuperarContrasena />} />
                     <Route path="/users/Registrarse" exact element={<UserLogin isSignUp={true}/>} />
                     <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo />} />
-                    {/* Remover linea 31 al final de las pruebas*/}
-                    <Route path="/users/Historial" exact element={<Historial />} />
-                    <Route path="/users/Historial/:User" exact element={<Historial/> }/>
+                    <Route path="/users/Historial" exact element={<Historial detallado={false}/>}/>
+                    <Route path="/users/Historial/Detalles" exact element={<Historial detallado={true}/> }/>
 
                     <Route path="/users" element={<PrivateRoute />}>
                         <Route path="/users/EditarCuenta" exact element={<EditarCuenta />} />

@@ -4,6 +4,7 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from
 import './Registrado.css';
 import logo from './Logotipo_Dark.png';
 import user from './user.png';
+import { Link } from 'react-router-dom';
 
 const style = { width: "80px" };
 const style2 = { width: "50px" };
@@ -30,6 +31,11 @@ export default class TopNav extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink>Juegos</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/users/Historial">
+                  Historial
+                </NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
