@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, FormGroup, Input, Label, Col, Form, Row } from "reactstrap";
+import { Button, FormGroup, Input, Label, Col, Form, Row, UncontrolledAlert, Alert } from "reactstrap";
 // import "./PantallasUsuario.css";
 import Cookies from "universal-cookie";
 import { Navigate } from "react-router-dom";
@@ -8,8 +8,9 @@ class Registrarse extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: "",
+      error: null,
       email: "",
+      nombre: "",
       password: "",
       IsSubmitting: false,
       isRegistered: false,
@@ -30,7 +31,7 @@ class Registrarse extends Component {
       body: JSON.stringify({
         correo_Electronico: this.state.email,
         password: this.state.password,
-        nombre: "Roy",
+        nombre: this.state.nombre,
         "Fecha_de_Nacimiento": "x",
         "sexo": "x"
       }),
@@ -55,12 +56,9 @@ class Registrarse extends Component {
         cookies.set("REFRESHTOKEN", data.refreshToken, {
           path: "/",
         });
-        // this.props.history.push('/senia/list')
-        //  console.log("setting new token:" + data.token)
-        // const navigate = useNavigate()
         console.log("setting new token:" + cookies.get("TOKEN"))
         console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
-        // navigate("/senia/list");
+        
         this.setState({ isRegistered: true });
       }
     }).catch(error => {
@@ -76,31 +74,50 @@ class Registrarse extends Component {
 
       <div>
         {
-          this.state.isRegistered ? (<Navigate to="/senia/list" />) : <div />
+          this.state.isRegistered ? (<Navigate to="/users/VerificarCorreo" message="registro exitoso"/>) : <div />
         }
         {
-          this.state.error ? (<div>{this.state.error}</div>) : <div />
+          this.state.error ? (<Alert color="danger">
+            {this.state.error}
+          </Alert>) : <div />
         }
         <div>
           <Form onSubmit={this.signUp}>
             <div className="General col-12 offset-md-1">
               <FormGroup row>
                 <Label for="Nombre" sm={2}>
-                  Nombre
+                  Nombre*
+                </Label>
+                <Col sm={6}>
+                  <Input
+                    id="Nombre"
+                    name="Nombre"
+                    placeholder="Nombre de usuario"
+                    type="text"
+                    required
+                    // value={this.state.email}
+                    onChange={e => this.setState({ nombre: e.target.value })}
+                  />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label for="Nombre" sm={2}>
+                  Correo Electronico*
                 </Label>
                 <Col sm={6}>
                   <Input
                     id="correo_Electronico"
-                    name="NombreUsuario"
-                    placeholder="Nombre de usuario"
+                    name="correo_Electronico"
+                    placeholder="Correo Electronico"
                     type="text"
+                    required
                     // value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                   />
                 </Col>
               </FormGroup><FormGroup row>
                 <Label for="Password" sm={2}>
-                  Contraseña
+                  Contraseña*
                 </Label>
                 <Col sm={6}>
                   <Input
@@ -108,6 +125,7 @@ class Registrarse extends Component {
                     name="PasswordUsuario"
                     placeholder="Contraseña de usuario"
                     type="password"
+                    required
                     // value={this.state.email}
                     onChange={e => this.setState({ password: e.target.value })}
                   />
@@ -118,14 +136,14 @@ class Registrarse extends Component {
                   Sexo
                 </Label>
                 <Col sm={2}>
-                  <Input id="Sexo" name="sexo" type="select">
+                  <Input id="Sexo" name="sexo" type="select" required>
                     <option>M</option>
                     <option>F</option>
                     <option>Indiferente</option>
                   </Input>
                 </Col>
                 <Label for="exampleDate" sm={2}>
-                  Fecha de Nacimiento
+                  Fecha de Nacimiento*
                 </Label>
                 <Col sm={2}>
                   <Input
@@ -133,6 +151,7 @@ class Registrarse extends Component {
                     name="date"
                     placeholder="date placeholder"
                     type="date"
+                    required
                   />
                 </Col>
               </Row>

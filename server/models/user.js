@@ -23,7 +23,9 @@ const Usuario = new Schema(
             default: "local",
         }, refreshToken: {
             type: [Session],
-        },
+        },EmailToken:{
+            type: String, required: false
+        }
     },
     { timestamps: true },
 )

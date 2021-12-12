@@ -32,7 +32,10 @@ class UserLogin extends Component {
             })
             userLogin.push(<Registrarse parentContext={this} />);
         } else {
-            userLogin.push(<Login parentContext={this} key="loginmount" appContext={this.props.parentContext} />);
+            if (this.props.message)
+                userLogin.push(<Login parentContext={this} key="loginmount" appContext={this.props.parentContext} />);
+            else
+                userLogin.push(<Login parentContext={this} key="loginmount" appContext={this.props.parentContext} />);
         }
         var loginmessage = "Crea tu cuenta";
         this.setState({
@@ -78,18 +81,18 @@ class UserLogin extends Component {
                         <h1>{this.state.buttonLabel}</h1>
                         <div className="UserLogin">
                             {this.state.userLogin}
-                            <div style={{color: "white"}}>
+                            <div style={{ color: "white" }}>
                                 {this.state.loginmessage}
                                 <div>
                                     <Button
-                                    style={{
-                                        backgroundColor: "transparent",
-                                        border: "none",
-                                    }}
-                                    onClick={(event) => this.handleClick(event)}>
+                                        style={{
+                                            backgroundColor: "transparent",
+                                            border: "none",
+                                        }}
+                                        onClick={(event) => this.handleClick(event)}>
                                         o bien &nbsp;
                                         <b>
-                                        {this.state.buttonLabel == this.state.LoginMessage ? this.state.signupMessage : this.state.LoginMessage}
+                                            {this.state.buttonLabel == this.state.LoginMessage ? this.state.signupMessage : this.state.LoginMessage}
 
                                         </b>
                                         {/* {this.state.buttonLabel} */}
