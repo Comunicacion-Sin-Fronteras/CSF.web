@@ -5,13 +5,14 @@ import { Button } from "reactstrap"
 import './NoRegistrado.css';
 import logo from './Logotipo_Dark.png';
 
-const style = { height:"70px",  width: "70px" };
+const style = { width: "80px" };
+const style2 = { color: "Black" };
 
 export default class TopNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className="color-nav" expand="md" light>
+        <Navbar className="color-nav" expand="sm">
           <Col sm="1" xs="1">
             <img
               alt="..."
@@ -20,18 +21,18 @@ export default class TopNav extends React.Component {
               style={style}
             ></img>
           </Col>
-          <NavbarBrand href="/">Comunicación sin Fronteras</NavbarBrand>
+          <NavbarBrand href="/" style={style2}>Comunicación sin Fronteras</NavbarBrand>
           <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
               <NavItem>
-                <NavLink>Home</NavLink>
+                <NavLink style={style2}>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="./Adivina">Juegos</NavLink>
+                <NavLink href="./Adivina" style={style2}>Juegos</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/users/Historial">
+                <NavLink tag={Link} to="/users/Historial"style={style2}>
                   Historial
                 </NavLink>
               </NavItem>
@@ -41,7 +42,9 @@ export default class TopNav extends React.Component {
                 <Link to="/auth/login">
                   <Button className="bc" color="secondary">Iniciar Sesión</Button>{' '}
                 </Link>
-                <Button className="bc" color="secondary">Registrate</Button>{' '}
+                <Link to="/users/Registrarse">
+                  <Button className="bc" color="secondary">Registrate</Button>{' '}
+                </Link>
               </div>
             </NavbarText>
           </Collapse>
