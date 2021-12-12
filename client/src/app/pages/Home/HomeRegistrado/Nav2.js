@@ -8,12 +8,13 @@ import { Link } from 'react-router-dom';
 
 const style = { width: "80px" };
 const style2 = { width: "50px" };
+const style3 = { color: "Black" };
 
 export default class TopNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className="color-nav" expand="md" light>
+        <Navbar className="color-nav" expand="sm">
         <Col sm="1" xs="1">
           <img
             alt="..."
@@ -27,13 +28,15 @@ export default class TopNav extends React.Component {
           <Collapse navbar>
             <Nav className="me-auto" navbar>
               <NavItem>
-                <NavLink>Home</NavLink>
+                <NavLink style={style3}>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink>Juegos</NavLink>
+                 <Link to="/juegos/Home" style={{textDecoration: "none"}}>
+                  <NavLink style={style3}>Juegos</NavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/users/Historial">
+                <NavLink tag={Link} to="/users/Historial" style={style3}>
                   Historial
                 </NavLink>
               </NavItem>
