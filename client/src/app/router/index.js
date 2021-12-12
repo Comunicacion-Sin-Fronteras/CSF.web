@@ -16,41 +16,47 @@ import HomeLoggin from '../pages/Home/HomeRegistrado'
 function AppRouting() {
     return (
         // <Container>
-            <Router>
-                <Routes>
+        <Router>
+            <Routes>
+                <Route path="/auth/login" element={<NotLogginRequieredRoute />}>
                     <Route path="/auth/login" exact element={<UserLogin></UserLogin>} />
-                    <Route path="/home" element={<PrivateRoute />}>
-                        <Route path="/home/" element={<HomeLoggin/>} />
-                    </Route>
+                </Route>
+                <Route path="/home" element={<PrivateRoute />}>
+                    <Route path="/home/" element={<HomeLoggin />} />
+                </Route>
 
-                    <Route path="/senia" element={<PrivateRoute />}>
-                        <Route path="/senia/create" element={<SeniasInsert />} />
-                        <Route path="/senia/list" element={<SeniasList />} />
-                        <Route path="/senia/update/:id" exact element={<SeniasUpdate />} />
-                    </Route>
-                    
-                    <Route path="/users/NuevaContrasena" exact element={<NuevaContrasena />} />
-                    <Route path="/users/RecuperarContrasena" exact element={<RecuperarContrasena />} />
-                    <Route path="/users/Registrarse" exact element={<UserLogin isSignUp={true}/>} />
+                <Route path="/senia" element={<PrivateRoute />}>
+                    <Route path="/senia/create" element={<SeniasInsert />} />
+                    <Route path="/senia/list" element={<SeniasList />} />
+                    <Route path="/senia/update/:id" exact element={<SeniasUpdate />} />
+                </Route>
+
+                <Route path="/users" element={<NotLogginRequieredRoute />}>
+                    <Route path="/users/Registrarse" exact element={<UserLogin isSignUp={true} />} />
                     <Route path="/users/VerificarCorreo" exact element={<VerificarCorreo />} />
-                    <Route path="/users/Historial" exact element={<Historial detallado={false}/>}/>
-                    <Route path="/users/Historial/Detalles" exact element={<Historial detallado={true}/> }/>
+                </Route>
+                <Route path="/users" element={<PrivateRoute />}>
+                    <Route path="/users/Historial" exact element={<Historial detallado={false} />} />
+                    <Route path="/users/Historial/Detalles" exact element={<Historial detallado={true} />} />
+                </Route>
+                <Route path="/users/NuevaContrasena" exact element={<NuevaContrasena />} />
+                <Route path="/users/RecuperarContrasena" exact element={<RecuperarContrasena />} />
 
-                    <Route path="/users" element={<PrivateRoute />}>
-                        <Route path="/users/EditarCuenta" exact element={<EditarCuenta />} />
-                    </Route>
-                    
-                    <Route path="/juegos/Home" exact element={<HomeJuegos />} />
-                    <Route path="/juegos/Adivina" exact element={<Adivina />} />
-                    <Route
-                        path="/senia/update/:id"
-                        exact
-                        element={<SeniasUpdate />}
-                    />
-                    <Route path="/" element={<HomeNotLoggin/>} />
-                    <Route path="*" element={<NotFoundError />} />
-                </Routes>
-            </Router>
+                <Route path="/users" element={<PrivateRoute />}>
+                    <Route path="/users/EditarCuenta" exact element={<EditarCuenta />} />
+                </Route>
+
+                <Route path="/juegos/Home" exact element={<HomeJuegos />} />
+                <Route path="/juegos/Adivina" exact element={<Adivina />} />
+                <Route
+                    path="/senia/update/:id"
+                    exact
+                    element={<SeniasUpdate />}
+                />
+                <Route path="/" element={<HomeNotLoggin />} />
+                <Route path="*" element={<NotFoundError />} />
+            </Routes>
+        </Router>
         //</Container>
 
 
@@ -79,19 +85,35 @@ const PrivateRoute = () => {
         isLogin = false;
         // return false;
     }
-    // console.log(isLogin)
 
-    // return (<div><Outlet/></div>);
-
-    // return(<div>loading</div>)
-    // if(auth){
-    //     console.log("verified user")
-    // } else {
-    //     console.log("not verified user")
-
-    // }
     // // If authorized, return an outlet that will render child elements
     // // If not, return element that will navigate to login page
     return isLogin ? <Outlet /> : <Navigate to="/auth/login" />;
+}
+
+const NotLogginRequieredRoute = () => {
+
+    const cookies = new Cookies(); // determine if authorized, from context or however you're doing it
+    const token = cookies.get("TOKEN");
+    const refreshToken = cookies.get("REFRESHTOKEN");
+    // const baseURL = process.env.REACT_APP_SERVER_API_ENDPOINT + "user/refreshToken"
+    var isLogin = false;
+    if (token) {
+        var isLogin = true;
+        if (refreshToken) {
+            tokenService.refreshToken();
+        } else {
+            console.log("no se encontro refreshtoken")
+        }
+    } else {
+        // console.log("no se encontraron tokens")
+        // return <Navigate to="/auth/login" />
+        isLogin = false;
+        // return false;
+    }
+
+    // // If authorized, return an outlet that will render child elements
+    // // If not, return element that will navigate to login page
+    return !isLogin ? <Outlet /> : <Navigate to="/home" />;
 }
 export default AppRouting

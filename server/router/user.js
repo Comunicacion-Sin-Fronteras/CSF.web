@@ -135,7 +135,7 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
                     res.send(err)
                 } else {
                     console.log(user.EmailToken)
-                    if(user.EmailToken != ""){
+                    if (user.EmailToken != "") {
                         res.statusCode = 402
                         res.send({ success: false })
 
@@ -218,37 +218,59 @@ router.post("/refreshToken", (req, res, next) => {
     }
 })
 
-router.post("/logout", verifyUser, (req, res, next) => {
+router.post("/logout", (req, res, next) => {
+    console.log("startgin logout");
     const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
+    let { refreshToken } = signedCookies
 
     if (!refreshToken) {
-        // console.log("getting refretoken from req.body")
+        console.log("getting refretoken from req.body")
         refreshToken = req.body.refreshToken;
     }
+    id = req.body.user._id
+    if (id) {
+        console.log("user:")
+        console.log(id)
+    } else {
+        console.log("user not found")
+    }
 
-    Usuario.findById(req.user._id).then(
-        user => {
-            const tokenIndex = user.refreshToken.findIndex(
-                item => item.refreshToken === refreshToken
+    if (refreshToken) {
+        try {
+            Usuario.findById(id).then(
+
+                user => {
+
+                    const tokenIndex = user.refreshToken.findIndex(
+                        item => item.refreshToken === refreshToken
+                    )
+
+                    if (tokenIndex !== -1) {
+                        user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
+                    }
+
+                    user.save((err, user) => {
+                        if (err) {
+                            res.statusCode = 500
+                            res.send(err)
+                        } else {
+                            res.clearCookie("refreshToken", COOKIE_OPTIONS)
+                            res.send({ success: true })
+                        }
+                    })
+                },
+                err => next(err)
             )
 
-            if (tokenIndex !== -1) {
-                user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
-            }
+        } catch (error) {
+            res.statusCode = 401
+            res.send("Unauthorized. user or payload not working")
+        }
 
-            user.save((err, user) => {
-                if (err) {
-                    res.statusCode = 500
-                    res.send(err)
-                } else {
-                    res.clearCookie("refreshToken", COOKIE_OPTIONS)
-                    res.send({ success: true })
-                }
-            })
-        },
-        err => next(err)
-    )
+    } else {
+        res.statusCode = 401
+        res.send("Unauthorized. RefreshToken not found")
+    }
 })
 
 router.get("/me", verifyUser, (req, res, next) => {
