@@ -1,7 +1,7 @@
 import { Button, FormGroup, Label, Input, FormFeedback } from "reactstrap"
 import React, { useState } from 'react';
 import Cookies from "universal-cookie";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const navigate = useNavigate()
@@ -10,7 +10,7 @@ export default function Login() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    
+
     const formSubmitHandler = async event => {
         event.preventDefault()
         setIsSubmitting(true)
@@ -43,17 +43,25 @@ export default function Login() {
                 cookies.set("REFRESHTOKEN", data.refreshToken, {
                     path: "/",
                 });
+                cookies.set("USER", data.user, {
+                    path: "/",
+                });
+                cookies.set("ID", data.id, {
+                    path: "/",
+                });
                 // this.props.history.push('/senia/list')
                 //  console.log("setting new token:" + data.token)
                 console.log("setting new token:" + cookies.get("TOKEN"))
                 console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
-                navigate("/senia/list");
+                console.log("user stted:" )
+                console.log(cookies.get("USER"))
+                navigate("/home");
             }
         }).catch(error => {
             setIsSubmitting(false)
             setError(genericErrorMessage)
         })
-        
+
     }
 
     return (
@@ -96,12 +104,35 @@ export default function Login() {
                     </FormFeedback>
                 </FormGroup>
                 <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    // onClick={this.signUp}
+                    size="lg"
+                    style={{
+                        backgroundColor: "#22201C",
+                        border: "#22201C",
+                        marginTop: "2vh",
+                    }}
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="60"
+                        height="60"
+                        fill="currentColor"
+                        className="bi bi-play-circle text-warning"
+                        viewBox="0 0 16 16"
+                    >
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
+                    </svg>
+                </Button>
+                {/* <Button
                     intent="primary"
                     value="submit"
                     disabled={isSubmitting}
                     text={`${isSubmitting ? "Signing In" : "Sign In"}`}
                     type="submit"
-                >{`${isSubmitting ? "Signing In" : "Sign In"}`}</Button>
+                >{`${isSubmitting ? "Signing In" : "Sign In"}`}</Button> */}
             </form>
         </div>
 

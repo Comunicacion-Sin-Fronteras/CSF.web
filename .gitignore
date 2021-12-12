@@ -5,3 +5,5 @@ client/.env
 mongo/
 
 .vs/
+
+server/mail/providers.js

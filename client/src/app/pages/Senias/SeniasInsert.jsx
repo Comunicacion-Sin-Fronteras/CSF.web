@@ -77,10 +77,6 @@ class SeniasInsert extends Component {
 
     render() {
         return (
-<<<<<<< HEAD
-            <div>
-                <p>este senia insert</p>
-=======
             <div className="principal">
                 <div className="container">
                     <div className="logo">
@@ -186,7 +182,6 @@ class SeniasInsert extends Component {
                         </Button>
                     </div>
                 </div>
->>>>>>> images-firebase
             </div>
         );
     }

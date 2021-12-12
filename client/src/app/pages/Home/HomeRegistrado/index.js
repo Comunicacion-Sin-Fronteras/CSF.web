@@ -1,17 +1,22 @@
-import './NoRegistrado.css';
-import Nav from './Nav';
-import Test from './Test';
+import './Registrado.css';
+import Nav from './Nav2';
+import Test from './TitleLogo';
 import {Card} from './Card';
 import cd from './data';
 import { Button } from "reactstrap";
+import Cookies from "universal-cookie";
+import TitleLogo from './TitleLogo';
 
 function HomeNotLoggin() {
+  const cookies = new Cookies();
+  let user = cookies.get("USER")
+  // user.nombre = 'roy';
   return (
     <html>
-      <body className='bodyNoRegistrado'>
+      <body className='bodyRegistrado'>
         <div>
           <Nav/>
-          <Test/>
+          <TitleLogo name={user.nombre}/>
           <div className="divC">
             {cd.map(cd => (
               <Card classes="mr" key={`${cd.id}`}>

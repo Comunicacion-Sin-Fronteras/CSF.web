@@ -1,10 +1,9 @@
 import React from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,NavbarText, Col, } from 'reactstrap';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
-import './Registrado.css';
+import './app.css';
 import logo from './Logotipo_Dark.png';
 import user from './user.png';
-import { Link } from 'react-router-dom';
 
 const style = { width: "80px" };
 const style2 = { width: "50px" };
@@ -30,9 +29,7 @@ export default class TopNav extends React.Component {
                 <NavLink>Home</NavLink>
               </NavItem>
               <NavItem>
-                 <Link to="/juegos/Home" style={{textDecoration: "none"}}>
-                  <NavLink>Juegos</NavLink>
-                </Link>
+                <NavLink>Juegos</NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
