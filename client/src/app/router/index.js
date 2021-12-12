@@ -53,7 +53,10 @@ function AppRouting() {
                     exact
                     element={<SeniasUpdate />}
                 />
-                <Route path="/" element={<HomeNotLoggin />} />
+                <Route path="/" element={<NotLogginRequieredRoute />}>
+                {/* used as transfer */}
+                    <Route path="/" element={<HomeNotLoggin />} />
+                </Route>
                 <Route path="*" element={<NotFoundError />} />
             </Routes>
         </Router>
