@@ -7,12 +7,13 @@ import user from './user.png';
 
 const style = { width: "80px" };
 const style2 = { width: "50px" };
+const style3 = { color: "Black" };
 
 export default class TopNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className="color-nav" expand="md" light>
+        <Navbar className="color-nav" expand="sm">
         <Col sm="1" xs="1">
           <img
             alt="..."
@@ -21,15 +22,15 @@ export default class TopNav extends React.Component {
             style={style}
           ></img>
         </Col>
-          <NavbarBrand href="/">Comunicación sin Fronteras</NavbarBrand>
+          <NavbarBrand href="/" style={style3}>Comunicación sin Fronteras</NavbarBrand>
           <NavbarToggler onClick={function noRefCheck(){}} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
               <NavItem>
-                <NavLink>Home</NavLink>
+                <NavLink style={style3}>Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink>Juegos</NavLink>
+                <NavLink style={style3}>Juegos</NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
