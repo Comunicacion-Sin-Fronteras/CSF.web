@@ -36,7 +36,9 @@ export default class TopNav extends React.Component {
                 <Link to="/auth/login">
                   <Button className="bc" color="secondary">Iniciar Sesión</Button>{' '}
                 </Link>
-                <Button className="bc" color="secondary">Registrate</Button>{' '}
+                <Link to="/users/Registrarse">
+                  <Button className="bc" color="secondary">Registrate</Button>{' '}
+                </Link>
               </div>
             </NavbarText>
           </Collapse>

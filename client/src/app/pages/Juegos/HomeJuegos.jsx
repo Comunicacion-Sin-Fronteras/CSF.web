@@ -41,7 +41,7 @@ class HomeJuegos extends Component {
                             </Link>
                         </Col>
                         <Col>
-                            <Link to="/">
+                            <Link to="/juegos/Adivina">
                                 <img src={Play} width="50"/> 
                             </Link>
                         </Col>
