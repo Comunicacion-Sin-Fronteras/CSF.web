@@ -30,6 +30,11 @@ export default class TopNav extends React.Component {
               <NavItem>
                 <NavLink href="./Adivina">Juegos</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/users/Historial">
+                  Historial
+                </NavLink>
+              </NavItem>
             </Nav>
             <NavbarText>
               <div>

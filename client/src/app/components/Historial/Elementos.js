@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'reactstrap';
-import apis from '../../../../api';
+import apis from '../../../api';
 import Lista from './Lista';
 
 class Elementos extends Component {
