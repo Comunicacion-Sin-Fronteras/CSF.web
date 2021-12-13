@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 const Usuario = require("../models/user")
 const passport = require("passport")
 require("dotenv").config()
+const mails = require("../mail/mails");
 
 var express = require('express'),
     router = express.Router();
@@ -41,6 +42,17 @@ router.post("/signup", (req, res, next) => {
                         console.log("verify not working")
                     }
                     user.refreshToken.push({ refreshToken })
+
+                    const EmailToken = 'csf_token_' + Math.random().toString(36).substr(2, 9);
+                    link = "http://" + req.get('Host') + "/api/user/verify?token=" + EmailToken + "&correo_Electronico=" + user.correo_Electronico;
+                    console.log("Sending email:");
+                    user.EmailToken = EmailToken;
+                    try {
+                        mails.sendValidation(link, user.correo_Electronico);
+                    } catch (error) {
+                        console.error(error)
+                    }
+
                     user.save((err, user) => {
                         if (err) {
                             res.statusCode = 500
@@ -60,6 +72,50 @@ router.post("/signup", (req, res, next) => {
     }
 })
 
+router.get('/verify', function (req, res) {
+    Host = "localhost:3000";
+    FrontEndHostLogin = "http://localhost:3006/auth/login";
+    console.log(req.protocol + ":/" + req.get('Host'));
+    const { token } = req.query;
+    // console.log("token:" + token);
+    const { correo_Electronico } = req.query;
+    devmode = 1;
+    // console.log("ID_Usuario:" + ID_Usuario);
+    if (((req.protocol + "://" + req.get('Host')) == ("http://" + Host)) || devmode) {
+        console.log("Domain is matched. Information is from Authentic email");
+        // console.log("Generating query: CALL `validateToken`(?, ?);" + [token, ID_Usuario]);
+
+        Usuario.findOne({ correo_Electronico: correo_Electronico }).then(
+            user => {
+                if (user) {
+                    if (token == user.EmailToken) {
+                        user.EmailToken = ""
+                    } else {
+                        console.log("token invalido")
+                        res.send(501)
+                    }
+
+                    user.save((err, user) => {
+                        if (err) {
+                            res.statusCode = 500
+                            console.log("500 error user not saved")
+                            res.send(err)
+                        } else {
+                            console.log("A user has been verified!!!")
+                            res.end(`<h1>Tu usuario ha sido verificado acceder a <a href="${FrontEndHostLogin}">${FrontEndHostLogin}</a> para iniciar sesión </h1>`);
+                            // res.send({ success: true, message: "Tu usuario ha sido verificado" })
+                        }
+                    })
+                } else {
+                    console.log("500 error user not saved")
+                    res.send(err)
+                }
+            }
+        )
+    } else
+        res.end(`<h1>Request is from unknown source: ${req.protocol}://${req.get('Host')} == http://${Host}}`);
+});
+
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
     const userID = req.user._id;
     const token = getToken({ _id: userID })
@@ -78,8 +134,15 @@ router.post("/login", passport.authenticate("local"), (req, res, next) => {
                     res.statusCode = 500
                     res.send(err)
                 } else {
-                    res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
-                    res.send({ success: true, token, refreshToken, user })
+                    console.log(user.EmailToken)
+                    if (user.EmailToken != "") {
+                        res.statusCode = 402
+                        res.send({ success: false })
+
+                    } else {
+                        res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
+                        res.send({ success: true, token, refreshToken, user })
+                    }
                 }
             })
         },
@@ -119,7 +182,7 @@ router.post("/refreshToken", (req, res, next) => {
                         if (tokenIndex === -1) {
                             // console.warn("Unauthorized request!")
                             res.statusCode = 401
-                            res.send("Unauthorized: " )
+                            res.send("Unauthorized: ")
                         } else {
                             const token = getToken({ _id: userId })
                             // If the refresh token exists, then create new one and replace it.
@@ -155,31 +218,59 @@ router.post("/refreshToken", (req, res, next) => {
     }
 })
 
-router.get("/logout", verifyUser, (req, res, next) => {
+router.post("/logout", (req, res, next) => {
+    console.log("startgin logout");
     const { signedCookies = {} } = req
-    const { refreshToken } = signedCookies
-    Usuario.findById(req.user._id).then(
-        user => {
-            const tokenIndex = user.refreshToken.findIndex(
-                item => item.refreshToken === refreshToken
+    let { refreshToken } = signedCookies
+
+    if (!refreshToken) {
+        console.log("getting refretoken from req.body")
+        refreshToken = req.body.refreshToken;
+    }
+    id = req.body.user._id
+    if (id) {
+        console.log("user:")
+        console.log(id)
+    } else {
+        console.log("user not found")
+    }
+
+    if (refreshToken) {
+        try {
+            Usuario.findById(id).then(
+
+                user => {
+
+                    const tokenIndex = user.refreshToken.findIndex(
+                        item => item.refreshToken === refreshToken
+                    )
+
+                    if (tokenIndex !== -1) {
+                        user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
+                    }
+
+                    user.save((err, user) => {
+                        if (err) {
+                            res.statusCode = 500
+                            res.send(err)
+                        } else {
+                            res.clearCookie("refreshToken", COOKIE_OPTIONS)
+                            res.send({ success: true })
+                        }
+                    })
+                },
+                err => next(err)
             )
 
-            if (tokenIndex !== -1) {
-                user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
-            }
+        } catch (error) {
+            res.statusCode = 401
+            res.send("Unauthorized. user or payload not working")
+        }
 
-            user.save((err, user) => {
-                if (err) {
-                    res.statusCode = 500
-                    res.send(err)
-                } else {
-                    res.clearCookie("refreshToken", COOKIE_OPTIONS)
-                    res.send({ success: true })
-                }
-            })
-        },
-        err => next(err)
-    )
+    } else {
+        res.statusCode = 401
+        res.send("Unauthorized. RefreshToken not found")
+    }
 })
 
 router.get("/me", verifyUser, (req, res, next) => {

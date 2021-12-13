@@ -1,15 +1,17 @@
-import { Button, FormGroup, Label, Input, FormFeedback } from "reactstrap"
+import { Button, FormGroup, Label, Input, FormFeedback, Alert } from "reactstrap"
 import React, { useState } from 'react';
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login(props) {
     const navigate = useNavigate()
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [error, setError] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    // if(props){
+    //     this.props = props
+    // }
 
     const formSubmitHandler = async event => {
         event.preventDefault()
@@ -31,6 +33,8 @@ export default function Login() {
                     // console.log({ correo_Electronico: email, password })
                 } else if (response.status === 401) {
                     setError("Invalid email and password combination.")
+                }else if (response.status === 402) {
+                    setError("User not verified, check email.")
                 } else {
                     setError(genericErrorMessage)
                 }
@@ -43,7 +47,17 @@ export default function Login() {
                 cookies.set("REFRESHTOKEN", data.refreshToken, {
                     path: "/",
                 });
-                cookies.set("USER", data.user, {
+                let user = {
+                    "_id": data.user._id,
+                    "username": data.user.username,
+                    "createdAt": data.user.createdAt,
+                    "updatedAt": data.user.updatedAt,
+                    "Fecha_de_Nacimiento": data.user.Fecha_de_Nacimiento,
+                    "correo_Electronico": data.user.correo_Electronico,
+                    "nombre": data.user.nombre,
+                    "sexo": data.user.sexo
+                }
+                cookies.set("USER", user, {
                     path: "/",
                 });
                 cookies.set("ID", data.id, {
@@ -51,9 +65,9 @@ export default function Login() {
                 });
                 // this.props.history.push('/senia/list')
                 //  console.log("setting new token:" + data.token)
-                console.log("setting new token:" + cookies.get("TOKEN"))
-                console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
-                console.log("user stted:" )
+                // console.log("setting new token:" + cookies.get("TOKEN"))
+                // console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
+                // console.log("user stted:")
                 console.log(cookies.get("USER"))
                 navigate("/home");
             }
@@ -65,12 +79,16 @@ export default function Login() {
     }
 
     return (
+        // {
+        //     this.props.message ? (<Alert>{this.props.message}</Alert>): (<div></div>);
+        // }
         <div>
-            {error && < div className="container">
-                < div className="alert alert-info" role="alert">
+            {error &&
+                <Alert color="danger">
                     {error}
-                </div>
-            </div>}
+
+                </Alert>
+            }
             {/* {error && <Callout intent="danger">{error}</Callout>} */}
             <form onSubmit={formSubmitHandler} className="auth-form">
                 <FormGroup>

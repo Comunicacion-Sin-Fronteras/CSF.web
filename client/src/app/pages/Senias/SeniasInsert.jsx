@@ -14,6 +14,12 @@ class SeniasInsert extends Component {
         super(props);
         this.state = {
             selectedFile: null,
+            Palabra: null,
+            Descripcion: null,
+            Dificultad: 'easy',
+            Nombre_Administrador: 'superAdmin',
+            Categoria: 'general',
+            isSubmited: false
             // reference for files: https://www.geeksforgeeks.org/file-uploading-in-react-js/
         }
     }
@@ -26,53 +32,97 @@ class SeniasInsert extends Component {
     handleUpload = async event => {
         event.preventDefault();
         var config = firebaseConfig;
+        if (config) {
+            const firebase = initializeApp(config);
+            const storage = getStorage(firebase);
+            console.log(process.env.REACT_APP_storageBucket)
+            // Create a storage reference from our storage service
+            const storageRef = ref(storage);
+            const file = await this.state.selectedFile;
 
-        const firebase = initializeApp(config);
-        const storage = getStorage(firebase);
-        // Create a storage reference from our storage service
-        const storageRef = ref(storage);
-        const file = await this.state.selectedFile;
+            if (file) {
+                const spaceRef = ref(storageRef, `images${file.name}`);
 
-        if (file) {
-            const spaceRef = ref(storageRef, `images${file.name}`);
+                const metadata = {
+                    cacheControl: 'public,max-age=300',
+                    contentType: 'image/jpeg',
+                    timeCreated: Date.now()
+                };
+                // 'file' comes from the Blob or File API
+                const uploadTask = uploadBytesResumable(spaceRef, file, metadata);
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        // Observe state change events such as progress, pause, and resume
+                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                            case 'paused':
+                                console.log('Upload is paused');
+                                break;
+                            case 'running':
+                                console.log('Upload is running');
+                                break;
+                        }
+                    },
+                    (error) => {
+                        // Handle unsuccessful uploads
+                    },
+                    () => {
+                        // Handle successful uploads on complete
+                        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                            console.log('File available at', downloadURL);
 
-            const metadata = {
-                cacheControl: 'public,max-age=300',
-                contentType: 'image/jpeg',
-                timeCreated: Date.now()
-            };
-            // 'file' comes from the Blob or File API
-            const uploadTask = uploadBytesResumable(spaceRef, file, metadata);
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    // Observe state change events such as progress, pause, and resume
-                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload is ' + progress + '% done');
-                    switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
+                            // fetch(process.env.REACT_APP_SERVER_API_ENDPOINT + "api/senia", {
+                            //     method: "POST",
+                            //     credentials: "include",
+                            //     headers: { "Content-Type": "application/json" },
+                            //     body: JSON.stringify({
+                            //         "Palabra": this.state.Palabra,
+                            //         "URL_Imagen": downloadURL,
+                            //         "Descripcion": this.state.Descripcion,
+                            //         "Dificultad": this.state.Dificultad,
+                            //         "Nombre_Administrador": 'juan',
+                            //         "Categoria": this.state.Categoria
+                            //     }),
+                            // }).then(async response => {
+                            //     // setIsSubmitting(false)
+                            //     if (!response.ok) {
+                            //         if (response.status === 400) {
+                            //             // setError("Please fill all the fields correctly!")
+                            //             console.log("Error 400")
+                            //         } else {
+                            //             // setError(genericErrorMessage)
+                            //             console.log("Error desconocido")
+
+                            //         }
+                            //     } else {
+                            //         const data = await response.json()
+                            //         this.setState({
+                            //             isLogout: true,
+                            //         })
+                            //         // navigate("/");
+                            //     }
+                            // }).catch(error => {
+                            //     console.log("Error desconocido")
+                            //     console.log(error)
+
+                            //     // setIsSubmitting(false)
+                            //     // setError(genericErrorMessage)
+                            // })
+                            // setURL(downloadURL);
+                        }).catch((err) => {
+                            console.log('error', err);
+                        });
                     }
-                },
-                (error) => {
-                    // Handle unsuccessful uploads
-                },
-                () => {
-                    // Handle successful uploads on complete
-                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        console.log('File available at', downloadURL);
-                        // setURL(downloadURL);
-                    }).catch((err) => {
-                        console.log('error', err);
-                    });
-                }
-            );
+                );
+            }
+        } else {
+            console.log("error al iniciar firebase")
         }
+
+
     };
 
     render() {
@@ -96,6 +146,7 @@ class SeniasInsert extends Component {
                                             name="Nombre Usuario"
                                             placeholder="Nombre de usuario"
                                             type="text"
+                                            onChange={e => this.setState({ Palabra: e.target.value })}
                                         />
                                     </Col>
                                 </FormGroup><FormGroup row>
@@ -108,6 +159,35 @@ class SeniasInsert extends Component {
                                             name="Descripcion"
                                             placeholder="Descripcion"
                                             type="text"
+                                            onChange={e => this.setState({ Descripcion: e.target.value })}
+                                        />
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row>
+                                    <Label for="Categoría" sm={2}>
+                                        Categoría
+                                    </Label>
+                                    <Col sm={6}>
+                                        <Input
+                                            id="Categoría"
+                                            name="Categoría"
+                                            placeholder="Categoría"
+                                            type="text"
+                                            onChange={e => this.setState({ Categoria: e.target.value })}
+                                        />
+                                    </Col>
+                                </FormGroup>
+                                <FormGroup row>
+                                    <Label for="Dificultad" sm={2}>
+                                        Categoría
+                                    </Label>
+                                    <Col sm={6}>
+                                        <Input
+                                            id="Dificultad"
+                                            name="Dificultad"
+                                            placeholder="Dificultad"
+                                            type="text"
+                                            onChange={e => this.setState({ Dificultad: e.target.value })}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -121,7 +201,7 @@ class SeniasInsert extends Component {
                                     />
                                 </FormGroup>
                                 {
-                                    (this.state.selectedFile) ? <div>{this.state.selectedFile.type} {this.state.selectedFile.size/1000}kb</div> : <div>no file</div>
+                                    (this.state.selectedFile) ? <div>{this.state.selectedFile.type} {this.state.selectedFile.size / 1000}kb</div> : <div>no file</div>
                                 }
                             </div>
                             <div>
@@ -131,7 +211,7 @@ class SeniasInsert extends Component {
                                     // onClick={this.submit()}
                                     type="submit"
                                     disabled={!this.state.selectedFile}
-                                    
+
                                     size="lg"
                                     style={{
                                         backgroundColor: "#22201C",

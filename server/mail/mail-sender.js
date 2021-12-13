@@ -23,22 +23,28 @@ async function main(mailConfig) {
     // Only needed if you don't have a real mail account for testing
     // let testAccount = await nodemailer.createTestAccount();
     let provider = providers.sendgrid;
-    // create reusable transporter object using the default SMTP transport
-    let transporter = createTransporter(provider);
+    if (provider) {
+        // create reusable transporter object using the default SMTP transport
+        let transporter = createTransporter(provider);
 
-    let mailOptions = {
-        from: provider.sender,
-        to: mailConfig.to,
-        subject: mailConfig.subject,
-        text: mailConfig.text,
-        html: mailConfig.html
+        let mailOptions = {
+            from: provider.sender,
+            to: mailConfig.to,
+            subject: mailConfig.subject,
+            text: mailConfig.text,
+            html: mailConfig.html
+        }
+
+        // console.log(mailOptions)
+
+        // send mail with defined transport object
+        let info = await transporter.sendMail(mailOptions);
+        console.log("Message sent: %s", info.messageId);
+    } else {
+        console.log("Not provider was found: %s");
+
     }
 
-    // console.log(mailOptions)
-
-    // send mail with defined transport object
-    let info = await transporter.sendMail(mailOptions);
-    console.log("Message sent: %s", info.messageId);
 }
 
 module.exports = {
