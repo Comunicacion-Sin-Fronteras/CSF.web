@@ -1,5 +1,5 @@
 import './app.css';
-import Nav from './Nav';
+import Nav from '../../Home/HomeRegistrado/Nav2';
 import Test from './Test';
 
 function Volver() {
