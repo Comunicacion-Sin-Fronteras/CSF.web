@@ -26,7 +26,7 @@ function Historial(props) {
                 <Container fluid>
                     <Row>
                         <Col>
-                            {props.detallado?<h2>{"Tipo de Juego: "}<Badge color="dark">{actividad.Tipo_de_Actividad}</Badge></h2>:<h2>Historial de {name}</h2>}
+                            {props.detallado?actividad?<h2>{"Tipo de Juego: "}<Badge color="dark">{actividad.Tipo_de_Actividad}</Badge></h2>:"Error":<h2>Historial de {name}</h2>}
                         </Col>
                     </Row>
                     <Row>
