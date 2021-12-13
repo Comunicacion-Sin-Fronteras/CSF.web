@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "_id": 1,
     "Palabra": "Hola",
     "Dificultad": "Facil",
     "Descripcion": "Imagen de Referencia",
@@ -8,7 +8,7 @@
     "URL_Imagen": "https://i.ibb.co/P1ddnHp/Screenshot-7.png"
   },
   {
-    "id": 2,
+    "_id": 2,
     "Palabra": "Hola",
     "Dificultad": "Facil",
     "Descripcion": "Imagen de Referencia",
@@ -16,7 +16,7 @@
     "URL_Imagen": "https://i.ibb.co/pjf1qZc/Screenshot-8.png"
   },
   {
-    "id": 3,
+    "_id": 3,
     "Palabra": "Hola",
     "Dificultad": "Facil",
     "Descripcion": "Imagen de Referencia",
@@ -24,7 +24,7 @@
     "URL_Imagen": "https://i.ibb.co/wCCtF8N/Screenshot-9.png"
   },
   {
-    "id": 4,
+    "_id": 4,
     "Palabra": "Hola",
     "Dificultad": "Facil",
     "Descripcion": "Imagen de Referencia",
@@ -32,7 +32,7 @@
     "URL_Imagen": "https://i.ibb.co/8NxT3Fv/Screenshot-10.png"
   },
   {
-    "id": 5,
+    "_id": 5,
     "Palabra": "Hola",
     "Dificultad": "Facil",
     "Descripcion": "Imagen de Referencia",

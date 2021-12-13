@@ -7,7 +7,7 @@ class SeniaDetails extends Component {
         super(props);
         this.state = { 
             Seña: "",
-         }
+        }
     }
     componentDidMount() {
         apis.getSeniaById(this.props.id)

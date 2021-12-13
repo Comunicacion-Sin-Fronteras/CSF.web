@@ -10,7 +10,6 @@ import axios from 'axios';
 import Cookies from "universal-cookie";
 import HomeJuegos from '../pages/Juegos/HomeJuegos'
 import Adivina from '../pages/Juegos/Pantalla/index'
-import Volver from '../pages/Juegos/Volver/index'
 import HomeNotLoggin from '../pages/Home/HomeNoRegistrado'
 import HomeLoggin from '../pages/Home/HomeRegistrado'
 
@@ -49,7 +48,6 @@ function AppRouting() {
 
                 <Route path="/juegos/Home" exact element={<HomeJuegos />} />
                 <Route path="/juegos/Adivina" exact element={<Adivina />} />
-                <Route path="/juegos/Volver" exact element={<Volver />} />
                 <Route
                     path="/senia/update/:id"
                     exact

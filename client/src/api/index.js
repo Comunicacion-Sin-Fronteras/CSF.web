@@ -15,6 +15,7 @@ export const deleteSeniaById = id => api.delete(`/senia/${id}`)
 export const getSeniaById = id => api.get(`/senia/${id}`)
 export const getHistory = (payload) => api.post('/history',payload)
 export const getHistoryContent = (User,Activity) => api.post('/historycontent',{Nombre_Usuario:User, Activity:Activity})
+export const saveActivity = (payload)=>api.post("/activities",payload)
 
 const apis = {
     insertSenia,
