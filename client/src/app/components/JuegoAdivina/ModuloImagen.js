@@ -1,7 +1,8 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import { Card } from './Card';
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 const Input = styled.input`
   font-size: 18px;
@@ -36,7 +37,7 @@ function Imagen(props) {
                 </Row>
                 <Row>
                     <Col>
-                    <button className="button" onClick={props.handlerNext}><span>Siguiente</span></button>
+                    {props.end?<Button color="danger" className='button' onClick={props.endActivity}>Terminar Juego</Button>:<button className="button" onClick={props.handlerNext}><span>Siguiente</span></button>}
                     </Col>
                 </Row>
                 </Col>
