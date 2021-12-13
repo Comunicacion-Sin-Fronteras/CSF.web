@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
   min-width: 0;
   max-width: 900px;
   word-wrap: break-word;
@@ -15,9 +13,6 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
   min-height: 1px;
   padding: 2rem;
 `;

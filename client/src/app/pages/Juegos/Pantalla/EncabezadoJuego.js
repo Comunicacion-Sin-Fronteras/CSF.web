@@ -1,6 +1,6 @@
 import React from "react";
 import gif from './gif.gif';
-import './app.css';
+import '../../../components/JuegoAdivina/app.css';
 // reactstrap components
 import { Row, Col, UncontrolledTooltip } from "reactstrap";
 

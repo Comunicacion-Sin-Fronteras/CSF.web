@@ -25,17 +25,6 @@ export default class TopNav extends React.Component {
           <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
-              <NavItem>
-                <NavLink style={style2}>Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="./Adivina" style={style2}>Juegos</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/users/Historial"style={style2}>
-                  Historial
-                </NavLink>
-              </NavItem>
             </Nav>
             <NavbarText>
               <div>

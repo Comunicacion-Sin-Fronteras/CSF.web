@@ -86,16 +86,8 @@ export default class TopNav extends React.Component {
           <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
-              <NavItem>
-                <NavLink style={style3}>Home</NavLink>
-              </NavItem>
-              <NavItem>
-                  <NavLink style={style3}>Juegos</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/users/Historial" style={style3}>
-                  Historial
-                </NavLink>
+              <NavItem> 
+                  <NavLink tag={Link} to="/juegos/Home" style={style3}>Juegos</NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
@@ -110,6 +102,9 @@ export default class TopNav extends React.Component {
                   <DropdownToggle>Opciones</DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem>Perfil</DropdownItem>
+                    <DropdownItem tag={Link} to="/users/Historial">
+                      Hitorial
+                    </DropdownItem>
                     <DropdownItem onClick={this.cerrarSesionHandler.bind(this)}>
                       {/* <div onClick={alert('test')}> */}
                       Cerrar Sesión

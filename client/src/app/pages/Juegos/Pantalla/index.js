@@ -1,9 +1,9 @@
-import './app.css';
-import Nav from './Nav';
-import Test from './Test';
+import '../../../components/JuegoAdivina/app.css';
+import Nav from '../../Home/HomeRegistrado/Nav2';
+import Test from './EncabezadoJuego';
 import Int from './int';
-import { Card } from './Card';
-import cd from './data';
+import ModuloJuego from '../../../components/JuegoAdivina/ModuloJuego'
+
 
 function Adivina() {
   // const [isSubmitting, setIsSubmitting] = useState(false)
@@ -52,24 +52,13 @@ function Adivina() {
 
 // }
   return (
-    <html>
-      <body className='bodyJuego'>
         <div>
           <Nav />
           <Test />
           <div className="divC">
-            {cd.map(cd => (
-              <Card classes="mr" key={`${cd.id}`}>
-                <Card.Body>
-                  <Card.Image src={cd.image} />
-                </Card.Body>
-              </Card>
-            ))}
+            <ModuloJuego/>
           </div>
-          <Int />
         </div>
-      </body>
-    </html>
   );
 }
 
