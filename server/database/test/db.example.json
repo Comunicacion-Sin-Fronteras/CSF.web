@@ -7,6 +7,127 @@
         "categoria": "David"
     },
     {
+        "palabra": "cuatro",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Numero 4",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Numeros"
+    },
+    {
+        "palabra": "cinco",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Numero 5",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Numeros"
+    },
+    {
+        "palabra": "seis",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Numero 6",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Numeros"
+    },
+    {
+        "palabra": "siete",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Numero 7",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Numeros"
+    },
+    {
+        "palabra": "ocho",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Numero 8",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Numeros"
+    },
+    {
+        "palabra": "enero",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Mes Enero",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Meses"
+    },
+    {
+        "palabra": "marzo",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Mes Marzo ",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Meses"
+    },
+    {
+        "palabra": "mayo",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Mes Mayo",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Meses"
+    },
+    {
+        "palabra": "julio",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Mes julio",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Meses"
+    },
+    {
+        "palabra": "septiembre",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Mes septiembre",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Meses"
+    },
+    {
+        "palabra": "caminar",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Verbo caminar",
+        "dificultad": "intermediate",
+        "administradorNombre": "Nataly",
+        "categoria": "Verbos"
+    },
+    {
+        "palabra": "correr",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Verbo correr",
+        "dificultad": "intermediate",
+        "administradorNombre": "Nataly",
+        "categoria": "Verbos"
+    },
+    {
+        "palabra": "nadar",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Verbo nadar",
+        "dificultad": "intermediate",
+        "administradorNombre": "Nataly",
+        "categoria": "Verbos"
+    },
+    {
+        "palabra": "patinar",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Verbo patinar",
+        "dificultad": "intermediate",
+        "administradorNombre": "Nataly",
+        "categoria": "Verbos"
+    },
+    {
+        "palabra": "bailar",
+        "URLImagen": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_light_color_272x92dp.png",
+        "descripcion": "Verbo bailar",
+        "dificultad": "easy",
+        "administradorNombre": "Nataly",
+        "categoria": "Verbos"
+    },
+    
+    {
         "Nombre_Administrador": "Juan Garcia",
         "Correo_Electronico": "JuanGa68@gmail.com",
         "Fecha_de_Nacimiento":"03/25/2015",

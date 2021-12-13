@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, Input, Label, Form, Row, Col } from "reactstrap";
 import "./PantallasUsuario.css";
-import Logotipo_Dark from "../../img/Logotipo_Dark.png";
+import Logotipo_Dark_Animated from "../../img/animated/Logotipo_Dark_Animated.gif";
 
 class NuevaContrasena extends Component {
   render() {
@@ -9,7 +9,7 @@ class NuevaContrasena extends Component {
       <div class="principal">
         <div class="container">
           <div class="logo">
-            <img src={Logotipo_Dark} width="240px" />
+            <img src={Logotipo_Dark_Animated} width="240px" />
           </div>
           <div class="formulario" role="alert">
             <h1>Nueva contraseña</h1>
