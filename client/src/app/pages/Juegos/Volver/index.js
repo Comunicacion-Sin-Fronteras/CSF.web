@@ -1,6 +1,6 @@
 import './app.css';
 import Nav from '../../Home/HomeRegistrado/Nav2';
-import Test from './Test';
+import TituloBoton from './TituloBoton';
 
 function Volver() {
   return (
@@ -8,7 +8,7 @@ function Volver() {
       <body className='bodyJuego'>
         <div>
           <Nav />
-          <Test />
+          <TituloBoton />
         </div>
       </body>
     </html>
