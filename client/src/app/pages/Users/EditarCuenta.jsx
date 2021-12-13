@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, Input, Label, Col, Form, Row } from "reactstrap";
 import "./PantallasUsuario.css";
-import Logotipo_Dark from "../../img/Logotipo_Dark.png";
+import Logotipo_Dark_Animated from "../../img/animated/Logotipo_Dark_Animated.gif";
 import Usuario from "../../img/Usuario.png";
 
 class EditarCuenta extends Component {
@@ -26,7 +26,7 @@ class EditarCuenta extends Component {
             
           </div>
           <div class="logo2">
-              <img src={Logotipo_Dark} width="70%" align="right" alt="logo" />
+              <img src={Logotipo_Dark_Animated} width="70%" align="right" alt="logo" />
             </div>
           <div class="formulario">
             <h1>Editar Cuenta</h1>
