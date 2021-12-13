@@ -49,7 +49,7 @@ class Registrarse extends Component {
         }
       } else {
         const data = await response.json()
-        const cookies = new Cookies();
+        /*const cookies = new Cookies();
         cookies.set("TOKEN", data.token, {
           path: "/",
         });
@@ -58,7 +58,7 @@ class Registrarse extends Component {
         });
         console.log("setting new token:" + cookies.get("TOKEN"))
         console.log("setting new rtoken:" + cookies.get("REFRESHTOKEN"))
-        
+        */
         this.setState({ isRegistered: true });
       }
     }).catch(error => {

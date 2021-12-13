@@ -5,13 +5,14 @@ import { Button } from "reactstrap"
 import './NoRegistrado.css';
 import logo from './Logotipo_Dark.png';
 
-const style = { height:"70px",  width: "70px" };
+const style = { width: "80px" };
+const style2 = { color: "Black" };
 
 export default class TopNav extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className="color-nav" expand="md" light>
+        <Navbar className="color-nav" expand="sm">
           <Col sm="1" xs="1">
             <img
               alt="..."
@@ -20,21 +21,10 @@ export default class TopNav extends React.Component {
               style={style}
             ></img>
           </Col>
-          <NavbarBrand href="/">Comunicación sin Fronteras</NavbarBrand>
+          <NavbarBrand href="/" style={style2}>Comunicación sin Fronteras</NavbarBrand>
           <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
-              <NavItem>
-                <NavLink>Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="./Adivina">Juegos</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/users/Historial">
-                  Historial
-                </NavLink>
-              </NavItem>
             </Nav>
             <NavbarText>
               <div>

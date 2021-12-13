@@ -60,7 +60,7 @@ router.post("/signup", (req, res, next) => {
 
                         } else {
                             console.log("refreshtoken: " + refreshToken)
-                            res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
+                            //res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS)
                             res.send({ success: true, token, refreshToken })
                             console.log("token: " + token)
                             // console.log(user)

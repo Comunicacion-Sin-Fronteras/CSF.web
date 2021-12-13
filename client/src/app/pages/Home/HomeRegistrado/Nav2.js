@@ -9,6 +9,7 @@ import Cookies from 'universal-cookie';
 
 const style = { width: "80px" };
 const style2 = { width: "50px" };
+const style3 = { color: "Black" };
 
 export default class TopNav extends React.Component {
   constructor(props) {
@@ -85,18 +86,8 @@ export default class TopNav extends React.Component {
           <NavbarToggler onClick={function noRefCheck() { }} />
           <Collapse navbar>
             <Nav className="me-auto" navbar>
-              <NavItem>
-                <NavLink>Home</NavLink>
-              </NavItem>
-              <NavItem>
-                <Link to="/juegos/Home" style={{ textDecoration: "none" }}>
-                  <NavLink>Juegos</NavLink>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/users/Historial">
-                  Historial
-                </NavLink>
+              <NavItem> 
+                  <NavLink tag={Link} to="/juegos/Home" style={style3}>Juegos</NavLink>
               </NavItem>
             </Nav>
             <NavbarText>
@@ -111,6 +102,9 @@ export default class TopNav extends React.Component {
                   <DropdownToggle>Opciones</DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem>Perfil</DropdownItem>
+                    <DropdownItem tag={Link} to="/users/Historial">
+                      Hitorial
+                    </DropdownItem>
                     <DropdownItem onClick={this.cerrarSesionHandler.bind(this)}>
                       {/* <div onClick={alert('test')}> */}
                       Cerrar Sesión
