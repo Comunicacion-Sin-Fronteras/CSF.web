@@ -101,7 +101,7 @@ export default class TopNav extends React.Component {
                 <UncontrolledDropdown>
                   <DropdownToggle>Opciones</DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem>Perfil</DropdownItem>
+                    <DropdownItem tag={Link} to="/users/Perfil">Perfil</DropdownItem>
                     <DropdownItem tag={Link} to="/users/Historial">
                       Hitorial
                     </DropdownItem>
