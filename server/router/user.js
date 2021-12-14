@@ -218,6 +218,46 @@ router.post("/refreshToken", (req, res, next) => {
     }
 })
 
+router.post("/updateUser", (req, res, next) => {
+    if (!req.body) {
+        res.statusCode = 500
+        res.send({
+            name: "Body Empty",
+            message: "The body is required",
+        })
+    } else {
+
+        Usuario.findOne({ correo_Electronico: req.body.correo_Electronico }).then(
+            user => {
+                if (user) {
+                    
+                    user.nombre = req.body.nombre
+                    user.Fecha_de_Nacimiento = req.body.Fecha_de_Nacimiento || "sin definir"
+                    user.sexo = req.body.sexo || "sin definir"
+
+                    // user.correo_Electronico = req.body.correo_Electronico || ""
+                    user.save((err, user) => {
+                        if (err) {
+                            res.statusCode = 500
+                            console.log("500 error user not saved")
+                            res.send(err)
+                        } else {
+                            console.log("A user has been updated!!!")
+                            console.log(user)
+                            // res.end(`<h1>Tu usuario ha sido verificado acceder a <a href="${FrontEndHostLogin}">${FrontEndHostLogin}</a> para iniciar sesión </h1>`);
+                            res.send({ success: true, user })
+                        }
+                    })
+                } else {
+                    console.log("500 user not found")
+                    res.statusCode = 500
+                    res.send()
+                }
+            }
+        )
+    }
+})
+
 router.post("/logout", (req, res, next) => {
     console.log("startgin logout");
     const { signedCookies = {} } = req

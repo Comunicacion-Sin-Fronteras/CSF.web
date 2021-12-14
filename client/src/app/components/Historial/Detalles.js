@@ -33,7 +33,7 @@ class Detalles extends Component {
         return (
             <>
                 {this.props.actividad ?
-                    <Container fluid>
+                    <Container fluid style={{color: "white"}}>
                         <Row>
                             <Col align="left">
                                 <h3>

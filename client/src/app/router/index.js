@@ -12,6 +12,7 @@ import HomeJuegos from '../pages/Juegos/HomeJuegos'
 import Adivina from '../pages/Juegos/Pantalla/index'
 import HomeNotLoggin from '../pages/Home/HomeNoRegistrado'
 import HomeLoggin from '../pages/Home/HomeRegistrado'
+import Perfil from '../pages/Users/Perfil'
 
 function AppRouting() {
     return (
@@ -44,6 +45,7 @@ function AppRouting() {
 
                 <Route path="/users" element={<PrivateRoute />}>
                     <Route path="/users/EditarCuenta" exact element={<EditarCuenta />} />
+                    <Route path="/users/Perfil" exact element={<Perfil />} />
                 </Route>
 
                 <Route path="/juegos/Home" exact element={<HomeJuegos />} />

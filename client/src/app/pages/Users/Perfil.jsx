@@ -24,9 +24,9 @@ class Perfil extends Component {
             return (
                 <div>
                     <Nav />
-                    <Container className="homeJuegos">
+                    <div className="homeJuegos">
                         {/* <nav= /> */}
-                        <div class="col-4">
+                        <div style={{color: "white"}}>
                             <Container fluid className="pt-5">
                                 <h1>Mis datos</h1>
                                 <Row>
@@ -35,10 +35,13 @@ class Perfil extends Component {
                                     <dd class="col-sm-9">
                                         {this.state.user.nombre}
                                     </dd>
-                                    <p class="h3">Datos de cuenta</p>
                                     <dt class="col-sm-3">E-mail</dt>
                                     <dd class="col-sm-9">
                                         {this.state.user.correo_Electronico}
+                                    </dd>
+                                    <dt class="col-sm-3">Fecha Nacimiento</dt>
+                                    <dd class="col-sm-9">
+                                        {this.state.user.Fecha_de_Nacimiento}
                                     </dd>
                                     <dd class="col-sm-12 pt-4">
                                         <Link to="/users/EditarCuenta">
@@ -51,7 +54,7 @@ class Perfil extends Component {
                             </Container>
                         </div>
 
-                    </Container>
+                    </div>
 
                 </div>
             )
