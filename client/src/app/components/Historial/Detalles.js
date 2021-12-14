@@ -13,7 +13,7 @@ class Detalles extends Component {
         }
     }
     componentDidMount() {
-        let User = new Cookies().get("User")
+        let User = new Cookies().get("USER").nombre
         if (User) {
 
             apis.getHistoryContent(User, this.props.actividad._id)
