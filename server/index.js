@@ -9,7 +9,7 @@ const router = require('./router/router')
 
 const APIDescriptor = require('./router/api_descriptor');
 
-require("dotenv").config()
+// require("dotenv").config()
 process.env.test = "working";
 
 require("./auth/strategies/JwtStrategy")

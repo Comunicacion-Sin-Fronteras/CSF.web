@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-require('dotenv').config();
+// require('dotenv').config();
 
+var port = 8080;
 const api = axios.create({
-    baseURL: process.env.REACT_APP_SERVER_API_ENDPOINT,
-    // baseURL: `http://localhost:${port}/api`,
+    // baseURL: process.env.REACT_APP_SERVER_API_ENDPOINT,
+    baseURL: `http://localhost:${port}/api`,
 })
 
 export const insertSenia = payload => api.post(`/senia`, payload)

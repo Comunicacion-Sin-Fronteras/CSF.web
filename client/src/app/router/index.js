@@ -1,12 +1,12 @@
 import React from 'react'
-import { NuevaContrasena, Registrarse, RecuperarContrasena, VerificarCorreo, EditarCuenta, Historial } from '../pages/Users'
-import { BrowserRouter as Router, Link, Route, Routes, Navigate, Outlet } from 'react-router-dom'
+import { NuevaContrasena, RecuperarContrasena, VerificarCorreo, EditarCuenta, Historial } from '../pages/Users'
+import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom'
 import { SeniasList, SeniasInsert, SeniasUpdate } from '../pages/Senias'
 import { NotFoundError } from '../pages/Errors/'
-import { Container } from 'reactstrap';
+// import { Container } from 'reactstrap';
 import UserLogin from '../pages/Users/UserLogin';
 import tokenService from '../components/Auth/services/tokenService';
-import axios from 'axios';
+// import axios from 'axios';
 import Cookies from "universal-cookie";
 import HomeJuegos from '../pages/Juegos/HomeJuegos'
 import Adivina from '../pages/Juegos/Pantalla/index'
@@ -78,7 +78,7 @@ const PrivateRoute = () => {
     // const baseURL = process.env.REACT_APP_SERVER_API_ENDPOINT + "user/refreshToken"
     var isLogin = false;
     if (token) {
-        var isLogin = true;
+        isLogin = true;
         if (refreshToken) {
             tokenService.refreshToken();
         } else {
@@ -104,7 +104,7 @@ const NotLogginRequieredRoute = () => {
     // const baseURL = process.env.REACT_APP_SERVER_API_ENDPOINT + "user/refreshToken"
     var isLogin = false;
     if (token) {
-        var isLogin = true;
+        isLogin = true;
         if (refreshToken) {
             tokenService.refreshToken();
         } else {

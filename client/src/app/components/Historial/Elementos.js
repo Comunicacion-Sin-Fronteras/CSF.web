@@ -15,10 +15,10 @@ class Elementos extends Component {
         console.log(JSON.stringify(payload))
         apis.getHistory(payload)
             .then(response => {
-                return response.data.success && response.status == 200 ? response.data.data : response.status
+                return response.data.success && response.status === 200 ? response.data.data : response.status
             })
             .then(data => {
-                if (data.length != 0 && data != 204) {
+                if (data.length !== 0 && data !== 204) {
                     this.setState({
                         HistoryElements: data
                     })
@@ -32,7 +32,7 @@ class Elementos extends Component {
             <Container fluid>
                 <Row>
                     <Col>
-                        {this.state.HistoryElements.length == 0 ? <h2>Aun no hay Actividades para mostrar</h2> : <Lista Elementos={this.state.HistoryElements} User={this.props.User} />}
+                        {this.state.HistoryElements.length === 0 ? <h2>Aun no hay Actividades para mostrar</h2> : <Lista Elementos={this.state.HistoryElements} User={this.props.User} />}
                     </Col>
                 </Row>
             </Container>
